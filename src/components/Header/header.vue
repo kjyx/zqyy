@@ -1,17 +1,14 @@
 <template>
-  <header class="headerBg">
+  <header class="headerBg" ref="top">
     <div class="w">
       <div class="header">
         <div class="logo">
-          <a href="">
-            <img src="../../assets/LOGO01.jpg"/>
+          <a href="" >
+            <img :src="logo"/>
           </a>
         </div>
-        <div class="search">
-          <div class="inp">
-            <input  type="text" name="" id="" placeholder="SEARCH">
-            <span class="el-icon-search"></span>
-          </div>
+        <div class="search" ref="text">
+          <p>做更有价值,更有意义的影像作品生产商</p>
         </div>
       </div>
     </div>
@@ -20,53 +17,68 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data(){
+    return{
+      logo:require('@/assets/LOGO1.png')
+    }
+  },
+  // 监听路由变化切换图片
+  watch:{
+    $route:{
+      handler(to){
+        const text = this.$refs.text
+        const top = this.$refs.top
+        if(to.path !== '/home'){
+          this.logo = require('@/assets/LOGO2.png')
+          text.style.color = `#747474`
+          top.style.position = 'relative'
+        }else {
+          this.logo = require('@/assets/LOGO1.png')
+          text.style.color = '#c8c8c8'
+          top.style.position = 'fixed'
+        }
+      }
+    }
+  }
 }
 </script>
 
 <style scoped lang="less">
-.headerBg{
+.color{
+  color: #fff;
+}
+.headerBg {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
-  margin-right: 60%;
-  padding: 35px 40px;
+  padding: 35px;
   width: 100%;
-  .w{
+  margin-bottom: 60px;
+  .w {
     width: 1700px;
     margin: 0 auto;
-    .header{
+
+    .header {
       display: flex;
       justify-content: space-between;
-      .logo{
-        width: 80px;
-        height: 80px;
-        img{
+
+      .logo {
+        width: 170px;
+        height: 50px;
+
+        img {
           width: 100%;
           height: 100%;
         }
       }
-        .inp {
-          display: inline-block;
-          line-height: 80px;
-          input{
-            width: 100px;
-            height: 100%;
-            outline: none;
-            background-color: transparent;
-            border: 0;
-            padding-left: 10px;
-            font-weight: 800;
-            font-size: 18px;
-          }
-          span{
-            display: inline-block;
-            font-size: 20px;
-            line-height: 80px;
-            //font-weight: 800;
-          }
-        }
+      .search {
+      p {
+        font-size: 15px;
+        line-height: 50px;
+      }
+    }
     }
   }
 }

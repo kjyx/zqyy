@@ -1,5 +1,16 @@
 <template>
   <div class="sidebar">
+    <div class="button" @click="drawer = true"></div>
+    <el-drawer
+        title="我是标题"
+        :visible.sync="drawer"
+        :direction="direction"
+        size='100%'
+        custom-class="drawer"
+    >
+<!--      暂时不写东西-->
+      <span>我来啦!</span>
+    </el-drawer>
     <div class="menuBtn">
       <ul>
         <li>
@@ -17,7 +28,7 @@
         <li @click="$router.push({path:'/relation'})">
           <span>联系</span>
         </li>
-        <li>
+        <li @click="$router.push({path:'/about'})">
           <span>中启影业</span>
         </li>
       </ul>
@@ -28,23 +39,34 @@
 
 <script>
 export default {
-  name: "navigation"
+  name: "navigation",
+  data(){
+    return{
+      drawer: false,
+      direction:"ltr",
+    }
+  }
 }
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
   .sidebar{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 99999;
     width: 60px;
     height: 100%;
     background: #fff;
+    .button{
+      width: 100%;
+      height: 10%;
+      background-color: pink;
+      margin-top: 100px;
+    }
     .menuBtn{
       width: 100%;
       height: 50%;
-      padding-top: 150px;
       text-align: center;
       ul{
         width: 100%;
@@ -77,5 +99,8 @@ export default {
       background-color: #c6b198;
       margin-top: 80px;
     }
+  }
+  .el-drawer{
+    background-color: rgba(0,0,0,0.7) !important;
   }
 </style>

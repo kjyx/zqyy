@@ -52,7 +52,7 @@
               <img src="./images/banner01.jpg" alt="" >
             </div>
             <!--          数字滚动列表-->
-            <div class="data "  >
+            <div class="data " >
               <ul class=" middle_left_leftCont">
                 <li v-for="(item,index) in middle_left_leftCont" :key="index">
                   <div class="datalist">
@@ -80,7 +80,7 @@
                       体解决方案。公司拥有才华横溢的创作团队和制作班底，运用特有的拍摄技巧和创意。迄今为止，中启影视拥有国内众多影视合作资源与协拍单位，服务多家国内有名企业，拍摄足迹遍布中国各个省市地区。</p>
                   </div>
                 </div>
-                <el-button type="primary" round">LOOKING MORE +</el-button>
+                <el-button type="primary" round> LOOKING MORE +</el-button>
               </div>
           </div>
         </div>
@@ -437,9 +437,7 @@
             </ul>
           </div>
           <div class="box6-left_bottom">
-            <el-button  class="iconfont icon-weixin">
-              <a href="http://zqszjt.com">需求联系</a>
-            </el-button>
+            <el-button  class="iconfont icon-weixin" @click="$router.push({path:'/relation'})">需求联系</el-button>
           </div>
           <div class="box6-left_copyright">
             <p><a href="">Copyright-@202012-one.cn版权所有<br>闽ICP备案20006149号</a></p>
@@ -464,8 +462,10 @@
 import 'animate.css'
 import Swiper from 'swiper'
 import 'swiper/css/swiper.css'
+import mixin from '../../mixin/mixin'
 export default {
   name: "home",
+  mixins:[mixin],
   data(){
     return {
       // 全屏滚动数据
@@ -487,32 +487,11 @@ export default {
         // sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ee1a59', '#2c3e4f']
     },
       // 数字滚动数据
-      middle_left_leftCont: [
-        {
-          name: '年',
-          num: 10,
-          msg: '行业服务经验'
-        },
-        {
-          name: '道',
-          num: 28,
-          msg: '视频制作环节'
-        },
-        {
-          name: '套',
-          num: 36,
-          msg: '摄影设备'
-        },
-        {
-          name: '位',
-          num: 100,
-          msg: '合作客户案例'
-        }
-      ]
+
     }
   },
   mounted() {
-       new Swiper(this.$refs.floor1Swiper, {
+      new Swiper(this.$refs.floor1Swiper, {
         centeredSlides: true,
         loop: true, // 循环模式选项
         // 如果需要分页器
@@ -526,7 +505,7 @@ export default {
           disableOnInteraction: true,
         },
       });
-    new Swiper(this.$refs.caseSwiper, {
+      new Swiper(this.$refs.caseSwiper, {
       centeredSlides: true,
       loop: true, // 循环模式选项
       // 如果需要分页器
@@ -546,7 +525,6 @@ export default {
         animateClass:'animated',
         offset:0
     }).init();
-
   },
   methods: {
     click() {
@@ -554,12 +532,12 @@ export default {
       this.$refs.page.api.moveSectionDown();
       // moveSectionDown();
     },
-  }
+  },
 
 }
 </script>
 
-<style  lang="less">
+<style scoped lang="less">
 .w{
   width: 1700px;
   margin: 0 auto;
@@ -728,9 +706,9 @@ export default {
           border-radius: 10px;
           margin-top: 8%;
           span{
-            display: block;
-            font-size: 10px;
-            line-height: 1px;
+            display: block !important;
+            font-size: 10px !important;
+            line-height: 1px !important;
           }
         }
       }
@@ -845,12 +823,12 @@ export default {
           color: #ff3700;
         }
       }
-      .swiper-container-horizontal > .swiper-pagination-bullets{
+      ::v-deep .swiper-container-horizontal > .swiper-pagination-bullets{
         left: -42% !important;
-        .swiper-pagination-bullet{
-          border-radius: 0 !important;
-          background-color: #8b6239 !important;
-        }
+      }
+      ::v-deep .swiper-pagination-bullet{
+        border-radius: 0 !important;
+        background-color: #8b6239 !important;
       }
       .swiper-slide{
         cursor: pointer;

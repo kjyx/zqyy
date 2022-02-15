@@ -24,9 +24,21 @@ Vue.use(VueAnimateNumber)
 
 // 字体图标
 import  '../public/icon/icon.css'
+
+// 瀑布流
+import 'vue-waterfall/lib/vue-waterfall.min'
+
+// 全局组件
+import CompanyProfile from "./components/CompanyProfile/CompanyProfile";
+Vue.component(CompanyProfile.name,CompanyProfile)
+
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
+  beforeCreate() {
+    // 配置全局事件总线
+    Vue.prototype.$bus = this
+  },
   router,
   store
 }).$mount('#app')

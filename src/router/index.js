@@ -35,30 +35,63 @@ let router = new VueRouter({
             path:'/home',
             nema:'Home',
             component: () => import('@/pages/Home/home'),
+            meta:{
+                isShow:false
+            }
         },
         // 产品
         {
             path:'/product',
             nema:'Product',
-            component: () => import('@/pages/Product/product')
+            component: () => import('@/pages/Product/product'),
+            meta:{
+                isShow:true
+            }
         },
         // 案例
         {
             path:'/case',
             nema:'Case',
-            component: () => import('@/pages/Case/case')
+            component: () => import('@/pages/Case/case'),
+            meta:{
+                isShow:true
+            }
         },
         // 新闻
         {
             path:'/news',
             nema:'News',
-            component: () => import('@/pages/News/news')
+            component: () => import('@/pages/News/news'),
+            meta:{
+                isShow:true
+            }
         },
         // 联系
         {
             path:'/relation',
             nema:'Relation',
-            component: () => import('@/pages/Relation/relation')
+            component: () => import('@/pages/Relation/relation'),
+            meta:{
+                isShow:true
+            }
+        },
+        // 关于
+        {
+          path:'/about',
+          name:'About',
+          component: () => import('@/pages/About/about'),
+            meta:{
+                isShow:true
+            }
+        },
+        // 案例详情
+        {
+            path:'/casedetails',
+            name:'CaseDetails',
+            component: () => import('@/pages/CaseDetails/CaseDetails'),
+            meta:{
+                isShow:true
+            }
         }
     ],
     scrollBehavior (to, from, savedPosition) {
@@ -69,5 +102,4 @@ let router = new VueRouter({
         }
     }
 })
-
 export default router
