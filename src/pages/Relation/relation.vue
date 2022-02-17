@@ -1,16 +1,10 @@
 <template>
 <div>
+  <insidepageheader></insidepageheader>
   <!--  地图-->
-  <div class="box-about">
+  <div class="about_case">
     <div class="w">
-      <div class="hander-text">
-        <div class="title">
-          <h1>联系我们</h1>
-          <span></span>
-        </div>
-        <p>Coutact us</p>
-      </div>
-      <div class="about_case" id="allmap"></div>
+      <div class="about_case-map" id="allmap"></div>
     </div>
   </div>
 <!--  信息and表单-->
@@ -46,18 +40,18 @@
         <div class="contact_right">
           <div class="contact-right_form">
             <from>
-              <div class="name public"  ref="name">
-                <input v-model="fromData.name" type="text" ref="name1"  placeholder="您的姓名" @change="validationName">
+              <div class="name public"  ref="nameBox">
+                <input v-model="fromData.feddBackName" type="text" placeholder="您的姓名" @change="validationName">
               </div>
-              <div class="phone public">
-                <input v-model="fromData.phone" type="text" name="" id="" placeholder="您的电话">
+              <div class="phone public" ref="phoneBox">
+                <input v-model="fromData.feddBackTel" type="text"  placeholder="您的电话" @change="PhoneVerification">
               </div>
               <div class="feedback">
-                <textarea v-model="fromData.feedback" placeholder="您反馈的内容"></textarea>
+                <textarea v-model="fromData.feddBackContent" placeholder="您反馈的内容"></textarea>
               </div>
             </from>
           </div>
-          <el-button style="width: 100%;background-color:#332c2b; height: 60px; color: #fff;">确认提交</el-button>
+          <el-button style="width: 100%;background-color:#332c2b; height: 60px; color: #fff;" @click="SubmitForm">确认提交</el-button>
         </div>
       </div>
     </div>
@@ -67,18 +61,25 @@
 </template>
 
 <script>
+import {reqFrom} from "@/api";
 export default {
   name: "relation",
   data(){
     return{
+      // 姓名正则
+      nameRegular: /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/,
+      // 电话正则
+      phoneRegular:/^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$/,
+      // 表单数据
       fromData:{
-        name:'',
-        phone:'',
-        feedback:''
+        feddBackName:'',
+        feddBackTel:'',
+        feddBackContent:''
       }
     }
   },
   mounted() {
+    // 地图
     var map = new BMapGL.Map('allmap');
     var point = new BMapGL.Point(114.671202,33.616546);
     map.centerAndZoom(point, 18);
@@ -102,66 +103,66 @@ export default {
   methods:{
     // 姓名验证
     validationName(){
-      var reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
-      let name = this.$refs.name
-      let name1 = this.$refs.name1
-      if (reg.test(name1.value)) {
-        name.style.borderBottom = '2px solid green'
+      let nameBox = this.$refs.nameBox
+      if (this.nameRegular.test(this.fromData.feddBackName)) {
+        nameBox.style.borderBottom = '2px solid green'
       }else {
-        name.style.borderBottom = '2px solid red'
+        nameBox.style.borderBottom = '2px solid red'
+      }
+    },
+    // 电话验证
+    PhoneVerification(){
+      let phoneBox = this.$refs.phoneBox
+      if (this.phoneRegular.test(this.fromData.feddBackTel)) {
+        phoneBox.style.borderBottom = '2px solid green'
+      }else {
+        phoneBox.style.borderBottom = '2px solid red'
+      }
+    },
+    // 点击提交发送请求
+    async SubmitForm(){
+      let nameBox = this.$refs.nameBox
+      let phoneBox = this.$refs.phoneBox
+      // 判断 如果姓名不对 或者为空 或者电话不对 或者为空 或者 反馈内容为空 都 返回提交失败
+      if (!this.nameRegular.test(this.fromData.feddBackName) ||
+          this.fromData.feddBackName === '' ||
+          !this.phoneRegular.test(this.fromData.feddBackTel) ||
+          this.fromData.feddBackTel === '' ||
+          this.fromData.feddBackContent === ''
+      ) {
+        this.$message.error('提交失败');
+      }else{
+        // 发送请求
+        const result = await reqFrom(this.fromData)
+        if (result.code === 200) {
+          this.$message({message: '提交成功', type: 'success'});
+          // 提交成功之后 吧 值清空 颜色变回来
+          this.fromData.feddBackName = ''
+          this.fromData.feddBackContent = ''
+          this.fromData.feddBackTel = ''
+          phoneBox.style.borderBottom = '2px solid #595353'
+          nameBox.style.borderBottom = '2px solid #595353'
+        }else {
+          this.$message.error('提交失败');
+        }
       }
     }
-    // 电话验证
-
   },
 }
 </script>
 
 <style scoped lang="less">
 // 地图
-.box-about{
+.about_case{
   width: 100%;
-  height: 910px;
-  //background-color: pink;
-  .hander-text{
+  height: 715px;
+  margin-bottom: 100px;
+  //background-color: black;
+  .about_case-map{
     width: 100%;
-    height: 70px;
-    //background-color: green;
-    text-align: center;
-    margin-bottom: 30px;
-    .title{
-      position: relative;
-      width: 130px;
-      margin: 0 auto;
-      h1{
-        display: inline-block;
-        font-size: 27px;
-        font-weight: 550;
-        letter-spacing: 4px;
-      }
-      span{
-        position: absolute;
-        top: -7px;
-        left: -5px;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background-color: rgba(230,33,42,0.9);
-        z-index: -1;
-      }
-    }
-    p{
-      font-size: 20px;
-      color: #7b7b7b;
-    }
-  }
-  .about_case{
-    width: 100%;
-    height: 715px;
-    background-color: black;
+    height: 100%;
   }
 }
-
 // 联系我们
 .box-contact{
   width: 100%;
@@ -220,6 +221,7 @@ export default {
           //background-color: skyblue;
           border-bottom: 2px solid #595353;
           margin-bottom: 50px;
+          padding-bottom: 5px;
         }
         .feedback{
           width: 100%;
@@ -233,6 +235,7 @@ export default {
             outline: none;
             // 禁止拉伸
             resize: none;
+            font-size: 17px;
           }
         }
         input{
@@ -240,6 +243,7 @@ export default {
           height: 100%;
           border: 0;
           outline: none;
+          font-size: 17px;
         }
       }
     }

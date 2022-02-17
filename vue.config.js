@@ -13,8 +13,8 @@ module.exports = {
     // 配置代理服务器
     devServer:{
         proxy:{
-            '/api':{
-                target:'http://39.98.123.211',
+            '/erupt-api':{
+                target:'http://110.42.240.198:8012',
                 // pathRewrite:{'^/api':''}
             }
         }

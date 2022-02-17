@@ -25,13 +25,12 @@ Vue.use(VueAnimateNumber)
 // 字体图标
 import  '../public/icon/icon.css'
 
-// 瀑布流
-import 'vue-waterfall/lib/vue-waterfall.min'
 
 // 全局组件
 import CompanyProfile from "./components/CompanyProfile/CompanyProfile";
 Vue.component(CompanyProfile.name,CompanyProfile)
-
+import insidepageheader from "@/components/InsidePageHeader/insidepageheader";
+Vue.component(insidepageheader.name,insidepageheader)
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),

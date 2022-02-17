@@ -12,25 +12,25 @@ import 'nprogress/nprogress.css'
 const requests = axios.create({
     //配置对象
     //基础路径.发送请求时 路径当中会出现 api
-    baseURL:'/api',
+    baseURL: '/erupt-api',
     //代表 请求超时时间
-    timeout:5000
+    timeout: 5000
 });
 
 //请求拦截器
-requests.interceptors.request.use( (config)=> {
+requests.interceptors.request.use((config) => {
     //进度条开始
     nprogress.start();
     return config;
 });
 
 // 添加响应拦截器
-requests.interceptors.response.use((res)=> {
+requests.interceptors.response.use((res) => {
     // 对响应数据做点什么
     //进度条结束
     nprogress.done()
     return res.data;
-},  (error)=> {
+}, (error) => {
     // 对响应错误做点什么
     return Promise.reject(error);
 });

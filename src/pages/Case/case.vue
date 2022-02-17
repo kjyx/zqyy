@@ -1,108 +1,106 @@
 <template>
-<div>
-  <!--  关于-->
-  <div class="box-about">
-    <div class="w">
-      <div class="hander-text">
-        <div class="title">
-          <h1>案例中心</h1>
-          <span></span>
-        </div>
-        <p>Case center</p>
+  <div>
+    <!--  关于-->
+    <insidepageheader></insidepageheader>
+    <!--  案例-->
+    <div class="case_min">
+      <div class="w">
+        <!--      tabs列表-->
+        <el-tabs value="qubu" @tab-click="caseSwitch">
+          <el-tab-pane :label="CaseType.caseTypeName" :name="CaseType.typeNameCn" v-for="CaseType in CaseTypeList"
+                       :key="CaseType.id">
+            <CaseList :caseList="caseList"></CaseList>
+          </el-tab-pane>
+        </el-tabs>
       </div>
     </div>
-  </div>
-<!--  案例-->
-  <div class="case_min">
-    <div class="w">
-<!--      tabs数据-->
-      <el-tabs value="quanbu">
-        <el-tab-pane  label="全部案例" name="quanbu">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-        <el-tab-pane  label="宣传片" name="xuanchuan">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-        <el-tab-pane  label="形象片" name="xingxiang">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-        <el-tab-pane  label="广告片" name="guanggao">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-        <el-tab-pane  label="产品片" name="chanpin">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-        <el-tab-pane  label="微电影" name="weidianying">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-        <el-tab-pane  label="二维/三维动画" name="donghua">
-          <CaseChildren></CaseChildren>
-        </el-tab-pane>
-      </el-tabs>
+
+    <div class="pagination">
+      <!--      分页-->
+      <el-pagination
+          background layout="prev, pager, next"
+          :current-page="casePage.pageNum"
+          :total="total"
+          :page-size="casePage.pageSize"
+          @current-change="getAllCaseList"
+          style="text-align: center; margin:100px 0;"></el-pagination>
     </div>
   </div>
-  <div class="pagination">
-    <!--      分页-->
-    <el-pagination background layout="prev, pager, next" :total="1000" style="text-align: center; margin:100px 0;"></el-pagination>
-  </div>
-</div>
 </template>
 
 <script>
-import CaseChildren from "@/pages/Case/CaseChildren/CaseChildren";
+import CaseList from "@/pages/Case/CaseList/CaseList";
+import {mapState} from 'vuex'
+import {getCaseList} from "@/api";
+
 export default {
   name: "case",
-  methods:{
+  data() {
+    return {
+      // 总条数
+      total: 0,
+      // 获取案例列表带的参数
+      casePage: {
+        // 分类id
+        typeId: "",
+        // 当前页
+        pageNum: 1,
+        // 一页显示多少
+        pageSize: 3
+      },
+      // 获取案例数据
+      caseList: []
+    }
   },
-  components:{
-    CaseChildren
+  mounted() {
+    // 页面挂在调用事件
+    this.$store.dispatch('Case/getCaseTitleList')
+    this.getAllCaseList()
+  },
+  computed: {
+    // 获取案例导航
+    ...mapState('Case', ['CaseTypeList']),
+  },
+  methods: {
+    // 获取案例列表
+    async getAllCaseList( page = 1 ) {
+      this.casePage.pageNum = page
+      const result = await getCaseList(this.casePage)
+      if (result.code === 200) {
+        // 获取总条数
+        this.total = result.data.total
+        // 获取数据
+        this.caseList = result.data.records
+        window.scrollTo(0,document.body.scrollHeight);
+        window.scrollTo(0,0);
+      }
+    },
+    // 切换列表
+    caseSwitch(vc) {
+      let id = vc.index
+      if (id === '0') {
+        id = ''
+        this.casePage.typeId = id
+        this.getAllCaseList()
+      } else {
+        this.casePage.typeId = Number(id) + 1
+        this.getAllCaseList()
+      }
+    }
+  },
+  components: {
+    CaseList
   }
 }
 </script>
 
 <style scoped lang="less">
-.box-about{
-  width: 100%;
-  height: 120px;
-  //background-color: pink;
-  .hander-text{
-    width: 100%;
-    height: 70px;
-    //background-color: green;
-    text-align: center;
-    margin-bottom: 30px;
-    .title{
-      position: relative;
-      width: 130px;
-      margin: 0 auto;
-      h1{
-        display: inline-block;
-        font-size: 27px;
-        font-weight: 550;
-        letter-spacing: 4px;
-      }
-      span{
-        position: absolute;
-        top: -7px;
-        left: -5px;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background-color: rgba(230,33,42,0.9);
-        z-index: -1;
-      }
-    }
-    p{
-      font-size: 20px;
-      color: #7b7b7b;
-    }
-  }
-}
-::v-deep .el-tabs__nav-wrap{
+::v-deep .el-tabs__nav-wrap {
   display: flex;
   justify-content: center;
 }
-::v-deep .el-tabs__header{
+
+::v-deep .el-tabs__header {
   margin: 0 0 50px;
 }
 </style>

@@ -1,16 +1,11 @@
 <template>
 <div>
 <!--  关于-->
-  <div class="box-about">
+  <insidepageheader></insidepageheader>
+
+  <div class="about_case">
     <div class="w">
-      <div class="hander-text">
-        <div class="title">
-          <h1>关于我们</h1>
-          <span></span>
-        </div>
-        <p>About us</p>
-      </div>
-      <div class="about_case"></div>
+      <div class="about_video"></div>
     </div>
   </div>
 <!--  公司简介-->
@@ -62,46 +57,14 @@ export default {
 </script>
 
 <style scoped lang="less">
-.box-about{
-  width: 100%;
-  height: 910px;
-  //background-color: pink;
-  .hander-text{
-    width: 100%;
-    height: 70px;
-    //background-color: green;
-    text-align: center;
-    margin-bottom: 30px;
-    .title{
-      position: relative;
-      width: 130px;
-      margin: 0 auto;
-      h1{
-        display: inline-block;
-        font-size: 27px;
-        font-weight: 550;
-        letter-spacing: 4px;
-      }
-      span{
-        position: absolute;
-        top: -7px;
-        left: -5px;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background-color: rgba(230,33,42,0.9);
-        z-index: -1;
-      }
-    }
-    p{
-      font-size: 20px;
-      color: #7b7b7b;
-    }
-  }
 .about_case{
   width: 100%;
   height: 715px;
-  background-color: black;
+  margin-bottom: 100px;
+  .about_video{
+    width: 100%;
+    height: 100%;
+    background-color: black;
   }
 }
 

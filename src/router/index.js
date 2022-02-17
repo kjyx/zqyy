@@ -64,7 +64,13 @@ let router = new VueRouter({
             component: () => import('@/pages/News/news'),
             meta:{
                 isShow:true
-            }
+            },
+        },
+        // 新闻内页
+        {
+            path:'/newsinfo/:newsid?',
+            name:'NewsInfo',
+            component: () => import('@/pages/News/NewsInfo/newsinfo')
         },
         // 联系
         {
@@ -86,7 +92,7 @@ let router = new VueRouter({
         },
         // 案例详情
         {
-            path:'/casedetails',
+            path:'/casedetails/:id?',
             name:'CaseDetails',
             component: () => import('@/pages/CaseDetails/CaseDetails'),
             meta:{
@@ -94,6 +100,7 @@ let router = new VueRouter({
             }
         }
     ],
+    // 跳转页面到顶部
     scrollBehavior (to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition
