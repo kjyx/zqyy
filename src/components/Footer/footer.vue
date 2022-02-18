@@ -71,7 +71,7 @@ footer{
   width: 100%;
   height: 590px;
   //background-color: pink;
-  border-top: 2px solid #6e6d6d;
+  border-top: 1px solid #6e6d6d;
   .footer-box{
     display: flex;
     align-items: center;

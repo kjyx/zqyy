@@ -46,7 +46,7 @@ export default {
         // 当前页
         pageNum: 1,
         // 一页显示多少
-        pageSize: 3
+        pageSize: 12
       },
       // 获取案例数据
       caseList: []
@@ -57,22 +57,22 @@ export default {
     this.$store.dispatch('Case/getCaseTitleList')
     this.getAllCaseList()
   },
-  computed: {
-    // 获取案例导航
-    ...mapState('Case', ['CaseTypeList']),
-  },
   methods: {
     // 获取案例列表
     async getAllCaseList( page = 1 ) {
       this.casePage.pageNum = page
-      const result = await getCaseList(this.casePage)
-      if (result.code === 200) {
+      try {
+        // 发送请求
+        await this.$store.dispatch('Case/getAllCaseList',this.casePage)
         // 获取总条数
-        this.total = result.data.total
+        this.total = this.CaseListDetaile.total
         // 获取数据
-        this.caseList = result.data.records
+        this.caseList = this.CaseListDetaile.records
+        // 翻页之后定位到顶部
         window.scrollTo(0,document.body.scrollHeight);
         window.scrollTo(0,0);
+      }catch (e) {
+        alert(e.message)
       }
     },
     // 切换列表
@@ -87,6 +87,12 @@ export default {
         this.getAllCaseList()
       }
     }
+  },
+  computed: {
+    // 获取案例导航
+    ...mapState('Case', ['CaseTypeList']),
+    // 获取案例列表数据
+    ...mapState('Case',['CaseListDetaile'])
   },
   components: {
     CaseList

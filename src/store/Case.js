@@ -1,4 +1,4 @@
-import { getCaseTypeList} from '@/api'
+import { getCaseTypeList,getCaseList} from '@/api'
 
 const actions = {
     // 案例导航栏
@@ -8,17 +8,29 @@ const actions = {
             commit('CASETYPELIST',result.data)
         }
     },
+    // 获取案例列表
+    async getAllCaseList({commit},data){
+        const result = await getCaseList(data)
+        if(result.code === 200){
+            commit('GETALLCASELIST',result.data)
+        }
+    }
 }
 
 const mutations = {
     CASETYPELIST(state,data){
         state.CaseTypeList = data
     },
+    GETALLCASELIST(state,caselist){
+        state.CaseListDetaile = caselist
+    }
 }
 
 const state = {
     // 案例导航栏
     CaseTypeList:[],
+    // 案例列表数据
+    CaseListDetaile:{}
 }
 
 const getters = {

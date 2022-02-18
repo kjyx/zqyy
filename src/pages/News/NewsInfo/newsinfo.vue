@@ -35,12 +35,12 @@
           <span class="iconfont icon-jiantou" @click="$router.push({path:'/news'})">Next</span>
         </div>
         <div class="function-buttom">
-          <span>BACK</span>
+          <span @click="$router.push({path:'/news'})">BACK</span>
         </div>
       </div>
     </div>
 <!--    footer-->
-    <footer>
+    <footer @click="$router.push({path:'/case'})">
         <img src="@/assets/newsFooter.png" alt="">
     </footer>
   </div>
@@ -167,6 +167,7 @@ export default {
     border-radius: 50%;
     text-align: center;
     background-color: black;
+    cursor: pointer;
     span{
       display: inline-block;
       line-height: 80px;
@@ -178,6 +179,7 @@ export default {
 footer{
   width: 100%;
   height: 600px;
+  cursor: pointer;
   img{
     width: 100%;
     height: 100%;

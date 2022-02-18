@@ -37,6 +37,7 @@ export default {
       height: 400px;
       margin-right: 32px;
       margin-bottom: 50px;
+      cursor: pointer;
       //background-color: green;
       .img{
         width: 100%;

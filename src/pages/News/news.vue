@@ -34,7 +34,8 @@
 
 <script>
 import NewsList from "@/pages/News/NewsList/NewsList";
-import { getNewsList,getNewsType} from "@/api";
+import { getNewsType } from "@/api";
+import {mapState} from "vuex";
 export default {
   name: "news",
   data(){
@@ -65,25 +66,34 @@ export default {
     // 点击导航发送请求 获取新闻分类
     async className(id){
       this.current = id
+      // 切换的时候添加 typeId 属性
       this.$set(this.PageParmes,'typeId',id)
+      this.PageParmes.pageNum = 1
       const result = await getNewsType(this.PageParmes)
       if(result.code === 200){
         this.total = result.data.total
         this.newsInfo = result.data.records
+        delete this.PageParmes.typeId
       }
     },
 
-    // 获取新闻列表
-    async getPageList( page = 1 ){
+    // 获取新闻列表 这里时在仓库发送的请求 因为home页面也要用到那个数据
+   async getPageList( page = 1 ){
       this.PageParmes.pageNum = page
-      const result = await getNewsList(this.PageParmes)
-      if (result.code === 200) {
-        this.total = result.data.total
-        this.newsInfo = result.data.records
-        window.scrollTo(0,document.body.scrollHeight);
-        window.scrollTo(0,0);
-      }
+     try {
+        // 发送请求
+       await this.$store.dispatch('News/NewsList',this.PageParmes)
+       this.newsInfo = this.allNewsList.records
+       this.total = this.allNewsList.total
+       window.scrollTo(0,document.body.scrollHeight);
+       window.scrollTo(0,0);
+     }catch (e) {
+       alert(e.message)
+     }
     }
+  },
+  computed:{
+    ...mapState('News',['allNewsList'])
   },
   components:{
     NewsList

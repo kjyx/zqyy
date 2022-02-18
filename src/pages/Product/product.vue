@@ -1,6 +1,6 @@
 <template>
 <div>
-  产品
+  <CompanyProfile></CompanyProfile>
 </div>
 </template>
 

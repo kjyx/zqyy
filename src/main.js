@@ -25,7 +25,6 @@ Vue.use(VueAnimateNumber)
 // 字体图标
 import  '../public/icon/icon.css'
 
-
 // 全局组件
 import CompanyProfile from "./components/CompanyProfile/CompanyProfile";
 Vue.component(CompanyProfile.name,CompanyProfile)
