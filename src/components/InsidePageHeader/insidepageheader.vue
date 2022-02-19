@@ -53,6 +53,11 @@ export default {
         this.titleEnglish = 'Case Details'
         break
       }
+      case `/product`: {
+        this.title = '产品中心'
+        this.titleEnglish = 'Product Center'
+        break
+      }
     }
     // if (this.$route.path === '/about') {
     //   this.title = '关于我们'

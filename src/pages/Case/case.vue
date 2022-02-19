@@ -7,8 +7,7 @@
       <div class="w">
         <!--      tabs列表-->
         <el-tabs value="qubu" @tab-click="caseSwitch">
-          <el-tab-pane :label="CaseType.caseTypeName" :name="CaseType.typeNameCn" v-for="CaseType in CaseTypeList"
-                       :key="CaseType.id">
+          <el-tab-pane :label="CaseType.caseTypeName" :name="CaseType.typeNameCn" v-for="CaseType in CaseTypeList" :key="CaseType.id">
             <CaseList :caseList="caseList"></CaseList>
           </el-tab-pane>
         </el-tabs>

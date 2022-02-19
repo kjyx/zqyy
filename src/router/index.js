@@ -46,7 +46,7 @@ let router = new VueRouter({
             component: () => import('@/pages/Product/product'),
             meta:{
                 isShow:true
-            }
+            },
         },
         // 案例
         {
