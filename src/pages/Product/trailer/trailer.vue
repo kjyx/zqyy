@@ -54,7 +54,6 @@
         </div>
       </div>
     </div>
-
 <!--    背景图-->
     <div class="images" style="margin-bottom: 150px">
         <img src="../images/text.png" alt="">
@@ -158,13 +157,13 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .wp {
   width: 1200px;
   margin: 0 auto;
 }
 
-.header {
+.header{
   width: 100%;
   height: 60px;
   //background-color: pink;
@@ -176,7 +175,6 @@ export default {
   }
 
   .text {
-    width: 530px;
     height: 100%;
 
     h1 {
@@ -418,6 +416,7 @@ export default {
     transform: rotate(1turn)
   }
 }
+
 @keyframes spin1 {
   to{
     transform: rotate(-1turn)

@@ -72,7 +72,7 @@ export default {
       width: 470px;
       height: 100%;
       //background-color: #342f2f;
-      background: url("~@/assets/anlibeijing.png");
+      background: url("~@/assets/anlibeijing.jpg");
 
       .about_left {
         width: 290px;

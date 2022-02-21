@@ -2,7 +2,6 @@
 <div>
 <!--  关于-->
   <insidepageheader></insidepageheader>
-
   <div class="about_case">
     <div class="w">
       <div class="about_video"></div>
