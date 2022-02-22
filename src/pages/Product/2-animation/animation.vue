@@ -166,6 +166,7 @@ export default {
           }
         }
         .animation-bottom{
+          position: relative;
           width: 100%;
           height: 44%;
           h1{
@@ -179,8 +180,11 @@ export default {
             font-weight: 500;
           }
           .el-button{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 200px;
-            margin-left: 175px;
           }
           .el-button--primary{
             text-align: center;

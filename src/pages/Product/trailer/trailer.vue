@@ -159,7 +159,7 @@ export default {
 
 <style lang="less">
 .wp {
-  width: 1200px;
+  width: 1300px;
   margin: 0 auto;
 }
 
