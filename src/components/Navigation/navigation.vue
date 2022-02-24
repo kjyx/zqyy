@@ -1,15 +1,52 @@
 <template>
   <div class="sidebar">
-    <div class="button" @click="drawer = true"></div>
-    <el-drawer
-        title="我是标题"
-        :visible.sync="drawer"
-        :direction="direction"
-        size='100%'
-        custom-class="drawer"
-    >
-<!--      暂时不写东西-->
-      <span>我来啦!</span>
+    <div class="button" @click="drawer = true">
+      <img src="./images/anniu.png" alt="">
+    </div>
+    <el-drawer  :visible.sync="drawer" :direction="direction" size='100%' custom-class="drawer">
+      <div class="box-nav">
+        <ul>
+          <li>
+            <div class="text" @click="$router.push({path:'/'});drawer=false">
+              <p>回到首页</p>
+              <span>Back to first page</span>
+            </div>
+          </li>
+          <li>
+            <div class="text" @click="$router.push({path:'/about'});drawer=false">
+              <p>关于我们</p>
+              <span>ABOUT US</span>
+            </div>
+          </li>
+          <li>
+            <div class="text" @click="$router.push({path:'/case'});drawer=false">
+              <p>案例中心</p>
+              <span>ABOUT US</span>
+            </div>
+          </li>
+          <li>
+            <div class="text" @click="$router.push({path:'/product'});drawer=false">
+              <p>产品中心</p>
+              <span>ABOUT US</span>
+            </div>
+          </li>
+          <li>
+            <div class="text" @click="$router.push({path:'/news'});drawer=false">
+              <p>新闻中心</p>
+              <span>ABOUT US</span>
+            </div>
+          </li>
+          <li>
+            <div class="text" @click="$router.push({path:'/relation'});drawer=false">
+              <p>联系我们</p>
+              <span>ABOUT US</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="image-nav">
+        <img src="./images/beijingtext.png" alt="">
+      </div>
     </el-drawer>
     <div class="menuBtn">
       <ul>
@@ -59,10 +96,14 @@ export default {
     height: 100%;
     background: #fff;
     .button{
-      width: 100%;
-      height: 10%;
-      background-color: pink;
-      margin-top: 100px;
+      width: 40%;
+      height: 2.5%;
+      //background-color: pink;
+      margin: 100px auto 0 auto;
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
     .menuBtn{
       width: 100%;
@@ -101,6 +142,57 @@ export default {
     }
   }
   .el-drawer{
-    background-color: rgba(0,0,0,0.7) !important;
+    background-color: rgba(51,44,43) !important;
+  }
+.el-drawer__header{
+    padding: 100px 130px 0!important;
+  }
+.el-drawer__close-btn{
+  font-size: 40px !important;
+}
+.el-drawer__body{
+  position: relative;
+}
+  .box-nav{
+    width: 100%;
+    ul{
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      height: 400px;
+      margin-top: 50px;
+      //background-color: green;
+      li{
+        display: flex;
+        align-items: center;
+        width: 200px;
+        height: 100%;
+        //background-color: pink;
+        .text{
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          height: 100px;
+          color: #fff;
+          cursor: pointer;
+          p{
+            font-size: 25px;
+            font-weight: 600;
+            padding-bottom: 10px;
+          }
+          span{
+          }
+        }
+      }
+    }
+  }
+  .image-nav{
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 </style>
