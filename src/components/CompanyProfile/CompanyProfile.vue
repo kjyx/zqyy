@@ -10,7 +10,7 @@
         </div>
         <div class="about-case_right">
           <ul>
-            <li v-for="item in CaseList" :key="item.id" @click="$router.push({path:`/casedetails/${item.id}`})">
+            <li v-for="item in CaseList" :key="item.id" @click="getCaseInfo(item.id)">
               <div class="image">
                 <img :src=item.pic alt="">
               </div>
@@ -41,7 +41,10 @@ export default {
 
   },
   methods: {
-
+    getCaseInfo(id){
+      this.$router.push({path:`/casedetails/${id}`})
+      this.$emit('Reimport')
+    },
   },
   computed: {
 

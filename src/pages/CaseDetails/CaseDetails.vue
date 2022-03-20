@@ -6,7 +6,8 @@
       <div class="w">
         <div class="case-video">
           <div class="case-video_left">
-            <img :src=CaseData.pic alt="">
+<!--            <img :src=CaseData.pic alt="">-->
+            <iframe :src="CaseData.caseVideoUrl" id="ifm" ref="iframe" scrolling="no" allowfullscreen="true" allowtransparency></iframe>
           </div>
           <div class="case-text_right">
             <div class="case-text">
@@ -22,13 +23,12 @@
         </div>
       </div>
     </div>
-    <CompanyProfile></CompanyProfile>
+    <CompanyProfile @Reimport="Reimport"></CompanyProfile>
   </div>
 </template>
 
 <script>
 import {getCaseData} from "@/api";
-
 export default {
   name: "CaseDetails",
   data() {
@@ -47,15 +47,20 @@ export default {
         console.log(result)
         this.CaseData = result.data
       }
-    }
-  }
+    },
+    // 这里是在案例详情里点击案例需要重新发送请求渲染页面
+    Reimport(){
+        this.caseDetails()
+    },
+  },
+
 }
 </script>
 
 <style scoped lang="less">
 .case-details {
   width: 100%;
-  height: 600px;
+  height: 620px;
   //background-color: pink;
   margin-bottom: 130px;
 
@@ -68,12 +73,16 @@ export default {
       width: 65%;
       height: 100%;
       //background-color: pink;
-      img {
-        width: 100%;
-        height: 100%;
+      //img {
+      //  width: 100%;
+      //  height: 100%;
+      //}
+         iframe{
+           width: 100%;
+          height: 100% ;
+        }
       }
     }
-
     .case-text_right {
       width: 35%;
       height: 100%;
@@ -109,5 +118,4 @@ export default {
       }
     }
   }
-}
 </style>

@@ -38,7 +38,7 @@
             </div>
           </div>
           <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination" style="bottom: 50px"></div>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
                   体解决方案。公司拥有才华横溢的创作团队和制作班底，运用特有的拍摄技巧和创意。迄今为止，中启影视拥有国内众多影视合作资源与协拍单位，服务多家国内有名企业，拍摄足迹遍布中国各个省市地区。</p>
               </div>
             </div>
-            <el-button type="primary" round> LOOKING MORE +</el-button>
+            <el-button type="primary" style="padding: 0;" class="button" @click="$router.push({path:'/product'})">LOOKING MORE +</el-button>
           </div>
         </div>
       </div>
@@ -113,9 +113,9 @@
                     </div>
                   </div>
                 </div>
+                <!-- 如果需要分页器 -->
+<!--                <div class="swiper-pagination1" style="position: absolute; left: -100px"></div>-->
               </div>
-              <!--              &lt;!&ndash;                  分页器&ndash;&gt;-->
-              <!--              <div class="swiper-pagination"></div>-->
             </div>
           </div>
         </div>
@@ -434,6 +434,12 @@ export default {
           new Swiper(this.$refs.caseSwiper, {
             centeredSlides: true,
             loop: true, // 循环模式选项
+            // 如果需要分页器
+            pagination: {
+              el: '.swiper-pagination1',
+              // 点击小圆点切换图片
+              clickable: true
+            },
             autoplay: {
               delay: 5000,
               disableOnInteraction: true,
@@ -709,6 +715,9 @@ export default {
   .mbox3 {
     .box1 {
       max-height: 70% !important;
+      /deep/.el-button{
+        padding: 0 !important;
+      }
     }
 
     .bottom1 {
