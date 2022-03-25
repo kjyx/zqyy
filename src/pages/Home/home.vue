@@ -7,11 +7,15 @@
         <div class="swiper-container" ref="floor1Swiper">
           <div class="swiper-wrapper">
             <!--            图一-->
-            <div class="swiper-slide">
+            <div class="swiper-slide" v-for="item in videoList" :key="item.id">
               <div class="banImg">
-                <div class="imgBg" style="background-image: url(./images/banner01.jpg)">
-                  <img src="./images/banner01.jpg" alt="">
+                <div class="imgBg">
+                  <video width="100%" height="100%" :src="item.url"
+                         autoplay="autoplay" loop="loop" muted="muted">
+                  </video>
                 </div>
+                <div class="mask"
+                     style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
               </div>
               <!--              第一个轮播图里的内容-->
               <div class="banText">
@@ -20,25 +24,9 @@
                 <p class="wow  bounceInDown" data-wow-duration="3s">USE VIDEO TO ENHANCE CORPORATE SALES</p>
               </div>
             </div>
-            <!--            图二-->
-            <div class="swiper-slide">
-              <div class="banImg">
-                <div class="imgBg" style="background-image: url(./images/banner01.jpg)">
-                  <img src="./images/banner01.jpg" alt="">
-                </div>
-              </div>
-            </div>
-            <!--            图三-->
-            <div class="swiper-slide">
-              <div class="banImg">
-                <div class="imgBg" style="background-image: url(./images/1617246671984864.jpg)">
-                  <img src="./images/1617246671984864.jpg" alt="">
-                </div>
-              </div>
-            </div>
           </div>
           <!-- 如果需要分页器 -->
-          <div class="swiper-pagination" style="bottom: 50px"></div>
+          <!--          <div class="swiper-pagination" style="bottom: 50px"></div>-->
         </div>
       </div>
     </div>
@@ -49,10 +37,13 @@
         <div class="banImg banImg2 wow bounceInRight " data-wow-duration="2s" style=" width: 60%;">
           <!--          左边背景图片-->
           <div class="imgBg" style="background-image: url(./images/banner01.jpg);">
-            <img src="./images/banner01.jpg" alt="">
+            <video width="100%" height="100%" src="http://image.zqszys.com/voide/1120X940-1_x264.mp4"
+                   autoplay="autoplay" loop="loop" muted="muted"></video>
           </div>
+          <div class="mask"
+               style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
           <!--          数字滚动列表-->
-          <div class="data ">
+          <div class="data" style="z-index: 1">
             <ul class=" middle_left_leftCont">
               <li v-for="(item,index) in middle_left_leftCont" :key="index">
                 <div class="datalist">
@@ -81,7 +72,9 @@
                   体解决方案。公司拥有才华横溢的创作团队和制作班底，运用特有的拍摄技巧和创意。迄今为止，中启影视拥有国内众多影视合作资源与协拍单位，服务多家国内有名企业，拍摄足迹遍布中国各个省市地区。</p>
               </div>
             </div>
-            <el-button type="primary" style="padding: 0;" class="button" @click="$router.push({path:'/product'})">LOOKING MORE +</el-button>
+            <el-button type="primary" style="padding: 0;" class="button" @click="$router.push({path:'/product'})">
+              LOOKING MORE +
+            </el-button>
           </div>
         </div>
       </div>
@@ -93,10 +86,13 @@
         <div class="banImg banImg2 wow fadeInDown" data-wow-duration="2s" style=" width: 60%;">
           <!--            背景图片-->
           <div class="imgBg" style="background-image: url(./images/banner01.jpg);">
-            <img src="./images/banner01.jpg" alt="">
+            <video width="100%" height="100%" src="http://image.zqszys.com/voide/1120X940-2_x264.mp4"
+                   autoplay="autoplay" loop="loop" muted="muted"></video>
           </div>
+          <div class="mask"
+               style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
           <!--            图片上内容-->
-          <div class="data1">
+          <div class="data1" style="z-index: 2">
             <div class="case">
               <div class="swiper-container" ref="caseSwiper">
                 <div class="swiper-wrapper" style="padding-bottom: 24%">
@@ -114,7 +110,7 @@
                   </div>
                 </div>
                 <!-- 如果需要分页器 -->
-<!--                <div class="swiper-pagination1" style="position: absolute; left: -100px"></div>-->
+                <!--                <div class="swiper-pagination1" style="position: absolute; left: -100px"></div>-->
               </div>
             </div>
           </div>
@@ -155,6 +151,12 @@
     <!--    第四屏-->
     <div class="section mobx4Bg">
       <div class="mbox mbox4">
+        <div style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;">
+          <video width="100%" style="object-fit:fill" height="100%" src="http://image.zqszys.com/voide/1920X1080-2_x264.mp4" autoplay="autoplay"
+                 loop="loop" muted="muted"></video>
+        </div>
+        <div class="mask"
+             style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 0"></div>
         <div class="box-top_right about">
           <h1>ABOUT</h1>
           <p>US</p>
@@ -248,7 +250,7 @@
         <div class="banImg banImg2 wow bounceInRight " data-wow-duration="2s" style=" width: 60%;">
           <!--          左边背景图片-->
           <div class="imgBg" style="background-image: url(./images/banner01.jpg);">
-            <img src="./images/banner01.jpg" alt="">
+            <img  src="./images/banner01.jpg" alt="">
           </div>
           <!--          左侧案例-->
           <div class="box_case-list5">
@@ -289,6 +291,12 @@
     <!--    第六屏-->
     <div class="section mobx6Bg">
       <div class="mbox mbox6">
+        <div style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;">
+          <video width="100%" style="object-fit: fill" height="100%" src="http://image.zqszys.com/voide/1920X1080-1_x264.mp4" autoplay="autoplay"
+                 loop="loop" muted="muted"></video>
+        </div>
+        <div class="mask"
+             style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.3); z-index: 0"></div>
         <div class="box-top_right about">
           <h1>ABOUT</h1>
           <p>US</p>
@@ -363,7 +371,7 @@ export default {
         navigationTooltips: ['Home', 'Open', 'Easy', 'Touch'],
         css3: true,
         // 滚动速度
-        scrollingSpeed: 700,
+        scrollingSpeed: 600,
         // 是否显示项目导航
         navigation: true,
         responsiveHeight: 330,
@@ -400,7 +408,12 @@ export default {
           MM = MM < 10 ? "0" + MM : MM;
           return y + "-" + MM;
         }
-      }
+      },
+      videoList: [
+        {id: 1, url: 'http://image.zqszys.com/voide/1860X950-1_x264.mp4'},
+        {id: 2, url: 'http://image.zqszys.com/voide/1860X950-2_x264.mp4'},
+        {id: 3, url: 'http://image.zqszys.com/voide/1860X950-3_x264.mp4'}
+      ]
     }
   },
   mounted() {
@@ -408,13 +421,14 @@ export default {
       centeredSlides: true,
       loop: true, // 循环模式选项
       // 如果需要分页器
-      pagination: {
-        el: '.swiper-pagination',
-        // 点击小圆点切换图片
-        clickable: true
-      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   // 点击小圆点切换图片
+      //   clickable: true
+      // },
+      speed: 2000,
       autoplay: {
-        delay: 5000,
+        delay: 14000,
         disableOnInteraction: true,
       },
     });
@@ -497,7 +511,7 @@ export default {
     rightCaseText() {
       let caseTextList = []
       this.CaseTypeList.forEach((item, index) => {
-        if (index > 0){
+        if (index > 0) {
           caseTextList.push(item)
         }
       })
@@ -535,8 +549,13 @@ export default {
       .imgBg {
         width: 100%;
         height: 100%;
-
-        img {
+        img{
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        video {
           display: block;
           width: 100%;
           height: 100%;
@@ -715,7 +734,8 @@ export default {
   .mbox3 {
     .box1 {
       max-height: 70% !important;
-      /deep/.el-button{
+
+      /deep/ .el-button {
         padding: 0 !important;
       }
     }
@@ -843,6 +863,7 @@ export default {
             flex: 1;
             padding-left: 50px;
             color: #fff;
+
             p {
               padding-top: 50px;
               text-align: left;
@@ -1010,7 +1031,6 @@ export default {
 }
 
 .mobx4Bg {
-  background: url(./images/banner02.jpg) center center / cover no-repeat;
 
   .box-center_list {
     position: absolute;
@@ -1094,7 +1114,11 @@ export default {
 }
 
 .mobx6Bg {
-  background: url("./images/banner6.jpg") center center/ cover no-repeat;
+  .mbox6 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 
   .box6-left {
     position: absolute;

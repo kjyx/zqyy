@@ -1,6 +1,5 @@
 <template>
   <header class="headerBg" ref="top">
-    <div class="w">
       <div class="header">
         <div class="logo">
           <a href="" >
@@ -10,7 +9,6 @@
         <div class="search" ref="text">
           <p>做更有价值,更有意义的影像作品生产商</p>
         </div>
-      </div>
     </div>
   </header>
 </template>
@@ -56,11 +54,8 @@ export default {
   padding: 35px;
   width: 100%;
   margin-bottom: 60px;
-  .w {
-    width: 1700px;
-    margin: 0 auto;
-
     .header {
+      padding-left: 60px;
       display: flex;
       justify-content: space-between;
 
@@ -74,6 +69,7 @@ export default {
         }
       }
       .search {
+        margin-right: 90px;
       p {
         font-size: 15px;
         line-height: 50px;
@@ -81,5 +77,4 @@ export default {
     }
     }
   }
-}
 </style>
