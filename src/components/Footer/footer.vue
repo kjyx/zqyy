@@ -37,12 +37,12 @@
               <div class="business">
                 <h1>业务领域</h1>
                 <ul>
-                  <li @click="$router.push({path:`/product/${1}`})">宣传片</li>
-                  <li @click="$router.push({path:`/product/${2}`})">形象片</li>
-                  <li @click="$router.push({path:`/product/${3}`})">广告片</li>
-                  <li @click="$router.push({path:`/product/${4}`})">产品片</li>
-                  <li @click="$router.push({path:`/product/${5}`})">微电影</li>
-                  <li @click="$router.push({path:`/product/${6}`})">二维/三维动画</li>
+                  <li @click="$router.push({path:`/product/trailer`})">宣传片</li>
+                  <li @click="$router.push({path:`/product/image-slices`})">形象片</li>
+                  <li @click="$router.push({path:`/product/commercials`})">广告片</li>
+                  <li @click="$router.push({path:`/product/product-piece`})">产品片</li>
+                  <li @click="$router.push({path:`/product/micro-film`})">微电影</li>
+                  <li @click="$router.push({path:`/product/animation`})">二维/三维动画</li>
                 </ul>
               </div>
               <div class="anli-xinwen-lianxi">

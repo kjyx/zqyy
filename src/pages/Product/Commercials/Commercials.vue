@@ -150,7 +150,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style  lang="less">
 .commercials2{
   width: 100%;
   height: 360px;

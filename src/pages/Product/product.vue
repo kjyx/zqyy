@@ -13,31 +13,10 @@
     </div>
     <div class="min">
       <div class="w">
-        <el-tabs :value="value">
-          <el-tab-pane label="宣传片" name="xuanchuan">
-            <trailer></trailer>
-          </el-tab-pane>
-
-          <el-tab-pane label="形象片" name="xingxiang">
-            <image-slices></image-slices>
-          </el-tab-pane>
-
-          <el-tab-pane label="广告片" name="guanggao">
-            <commercials></commercials>
-          </el-tab-pane>
-
-          <el-tab-pane label="产品片" name="chanpin">
-            <product-piece></product-piece>
-          </el-tab-pane>
-
-          <el-tab-pane label="微电影" name="dianying">
-            <micro-film></micro-film>
-          </el-tab-pane>
-
-          <el-tab-pane label="二维/三维动画" name="donghua">
-            <animation></animation>
-          </el-tab-pane>
+        <el-tabs value="xuanchuan" @tab-click="abc">
+          <el-tab-pane :label="item.label" :name="item.value" v-for="item in titleList" :key="item.id"></el-tab-pane>
         </el-tabs>
+          <router-view></router-view>
       </div>
     </div>
     <CompanyProfile></CompanyProfile>
@@ -45,66 +24,34 @@
 </template>
 
 <script>
-import trailer from "@/pages/Product/trailer/trailer";
-import ImageSlices from "@/pages/Product/ImageSlices/ImageSlices";
-import ProductPiece from "@/pages/Product/ProductPiece/ProductPiece";
-import Commercials from "@/pages/Product/Commercials/Commercials";
-import MicroFilm from "@/pages/Product/MicroFilm/MicroFilm";
-import Animation from "@/pages/Product/2-animation/animation";
-
 export default {
   name: "product",
-  data(){
-    return{
-      value: 'xuanchuan'
+  data() {
+    return {
+      titleList: [
+        {id: 1, value: 'xuanchuan', label: '宣传片', url: '/product/trailer'},
+        {id: 2, value: 'xingxing', label: '形象片', url: '/product/image-slices'},
+        {id: 3, value: 'guanggao', label: '广告片', url: '/product/commercials'},
+        {id: 4, value: 'chanpin', label: '产品篇', url: '/product/product-piece'},
+        {id: 5, value: 'dianying', label: '微电影', url: '/product/micro-film'},
+        {id: 6, value: 'donghua', label: '二/三维动画', url: '/product/animation'}
+      ]
     }
-  },
-  components: {
-    Animation,
-    MicroFilm,
-    Commercials,
-    ProductPiece,
-    ImageSlices,
-    trailer
-  },
-  mounted() {
-    this.handleChangProduct(this.$route.params.id)
   },
   methods: {
-    handleChangProduct(id) {
-      let Id = Number(id) - 1
-        switch (Id) {
-          case 0:{
-            this.value = 'xuanchuan'
-            break
-          }
-          case 1:{
-            this.value = 'xingxiang'
-            break
-          }
-          case 2:{
-            this.value = 'guanggao'
-            break
-          }
-          case 3:{
-            this.value = 'chanpin'
-            break
-          }
-          case 4:{
-            this.value = 'dianying'
-            break
-          }
-          case 5:{
-            this.value = 'donghua'
-            break
-          }
+    abc(a) {
+      this.titleList.forEach(item => {
+        if (item.label === a.label) {
+          this.$router.push({path:item.url})
         }
-    }
+      })
+    },
   }
 }
 </script>
 
 <style scoped>
+
 ::v-deep .el-tabs__nav-wrap {
   display: flex;
   justify-content: center;

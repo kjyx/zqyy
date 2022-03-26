@@ -65,9 +65,13 @@ export default {
   height: 715px;
   margin-bottom: 100px;
   .about_video{
+    overflow: hidden;
     width: 100%;
     height: 100%;
     background-color: black;
+    video{
+      transform: scale(1.3);
+    }
   }
 }
 
