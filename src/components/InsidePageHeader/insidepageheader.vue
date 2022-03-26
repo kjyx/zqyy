@@ -43,19 +43,9 @@ export default {
         this.titleEnglish = 'News Details'
         break
       }
-      case '/case': {
-        this.title = '案例中心'
-        this.titleEnglish = 'Our Case'
-        break
-      }
       case `/casedetails/${this.$route.params.id}`: {
         this.title = '案例详情'
         this.titleEnglish = 'Case Details'
-        break
-      }
-      case `/product`: {
-        this.title = '产品中心'
-        this.titleEnglish = 'Product Center'
         break
       }
     }
@@ -82,7 +72,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .box-about{
   width: 100%;
   height: 120px;

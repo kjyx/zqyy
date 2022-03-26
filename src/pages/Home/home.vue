@@ -11,7 +11,7 @@
               <div class="banImg">
                 <div class="imgBg">
                   <video width="100%" height="100%" :src="item.url"
-                         autoplay="autoplay" loop="loop" muted="muted">
+                         autoplay="autoplay" loop="loop" muted="muted" ref="videoList">
                   </video>
                 </div>
                 <div class="mask"
@@ -38,16 +38,16 @@
           <!--          左边背景图片-->
           <div class="imgBg" style="background-image: url(./images/banner01.jpg);">
             <video width="100%" height="100%" src="http://image.zqszys.com/voide/1120X940-1_x264.mp4"
-                   autoplay="autoplay" loop="loop" muted="muted"></video>
+                   autoplay="autoplay" loop="loop" muted="muted" ref="video1"></video>
           </div>
-          <div class="mask"
-               style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
+          <div class="mask" style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
           <!--          数字滚动列表-->
           <div class="data" style="z-index: 1">
             <ul class=" middle_left_leftCont">
               <li v-for="(item,index) in middle_left_leftCont" :key="index">
                 <div class="datalist">
-                  <animate-number from="0" :to="item.num" duration="10000" class="h1"></animate-number>
+                  <animate-number from="0" :to="item.num" duration="5000" class="h1"
+                                  ref="animateNumber"></animate-number>
                   <span>{{ item.name }}</span>
                 </div>
                 <p>{{ item.msg }}</p>
@@ -87,7 +87,7 @@
           <!--            背景图片-->
           <div class="imgBg" style="background-image: url(./images/banner01.jpg);">
             <video width="100%" height="100%" src="http://image.zqszys.com/voide/1120X940-2_x264.mp4"
-                   autoplay="autoplay" loop="loop" muted="muted"></video>
+                   autoplay="autoplay" loop="loop" muted="muted" ref="video2"></video>
           </div>
           <div class="mask"
                style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
@@ -152,8 +152,7 @@
     <div class="section mobx4Bg">
       <div class="mbox mbox4">
         <div style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;">
-          <video width="100%" style="object-fit:fill" height="100%" src="http://image.zqszys.com/voide/1920X1080-2_x264.mp4" autoplay="autoplay"
-                 loop="loop" muted="muted"></video>
+          <img src="@/assets/4-beijing.jpg" alt="">
         </div>
         <div class="mask"
              style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 0"></div>
@@ -249,11 +248,13 @@
       <div class="mbox mbox5">
         <div class="banImg banImg2 wow bounceInRight " data-wow-duration="2s" style=" width: 60%;">
           <!--          左边背景图片-->
-          <div class="imgBg" style="background-image: url(./images/banner01.jpg);">
-            <img  src="./images/banner01.jpg" alt="">
+          <div class="imgBg" style="background-image: url(~@/assets/caseImg.jpg);">
+            <img src="@/assets/caseImg.jpg" alt="">
           </div>
+          <div class="mask" style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
+
           <!--          左侧案例-->
-          <div class="box_case-list5">
+          <div class="box_case-list5" style="z-index: 5;">
             <ul>
               <li v-for="item in CaseList" :key="item.id" @click="$router.push({path:`/casedetails/${item.id}`})">
                 <div class="image5">
@@ -277,7 +278,7 @@
             </div>
             <div class="box_bottom5">
               <ul>
-                <li v-for="item in rightCaseText" :key="item.id" @click="$router.push({path:`/case`})">
+                <li v-for="item in rightCaseText" :key="item.id" @click="$router.push({path:`/case/${item.id}`})">
                   <div class="letf-wire"></div>
                   <div class="right-text">{{ item.caseTypeName }}</div>
                 </li>
@@ -292,8 +293,9 @@
     <div class="section mobx6Bg">
       <div class="mbox mbox6">
         <div style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;">
-          <video width="100%" style="object-fit: fill" height="100%" src="http://image.zqszys.com/voide/1920X1080-1_x264.mp4" autoplay="autoplay"
-                 loop="loop" muted="muted"></video>
+          <video width="100%" style="object-fit: fill" height="100%"
+                 src="http://image.zqszys.com/voide/1920X1080-1_x264.mp4" autoplay="autoplay"
+                 loop="loop" muted="muted" ref="video6"></video>
         </div>
         <div class="mask"
              style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.3); z-index: 0"></div>
@@ -370,6 +372,7 @@ export default {
       options: {
         navigationTooltips: ['Home', 'Open', 'Easy', 'Touch'],
         css3: true,
+        afterLoad: this.afterLoad,
         // 滚动速度
         scrollingSpeed: 600,
         // 是否显示项目导航
@@ -479,7 +482,39 @@ export default {
     // 获取第五页右侧数据
     async caseText() {
       await this.$store.dispatch('Case/getCaseTitleList')
+    },
+
+
+    afterLoad(a, b) {
+      switch (b.index) {
+        case 0 : {
+          this.$refs.videoList.forEach(item => {
+            item.play()
+          })
+          break
+        }
+        case 1 : {
+          this.$refs.animateNumber.forEach(item => {
+            item.start()
+          })
+          this.$refs.video1.play()
+          break
+        }
+        case 2 : {
+          this.$refs.video2.play()
+          break
+        }
+        case 3 : {
+          this.$refs.video3.play()
+          break
+        }
+        case 5 : {
+          this.$refs.video6.play()
+          break
+        }
+      }
     }
+
   },
   computed: {
     ...mapState('News', ['allNewsList']),
@@ -549,12 +584,14 @@ export default {
       .imgBg {
         width: 100%;
         height: 100%;
-        img{
+
+        img {
           display: block;
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
+
         video {
           display: block;
           width: 100%;

@@ -41,7 +41,7 @@ let router = new VueRouter({
         },
         // 产品
         {
-            path:'/product',
+            path:'/product/:id?',
             nema:'Product',
             component: () => import('@/pages/Product/product'),
             meta:{
@@ -50,7 +50,7 @@ let router = new VueRouter({
         },
         // 案例
         {
-            path:'/case',
+            path:'/case/:id?',
             nema:'Case',
             component: () => import('@/pages/Case/case'),
             meta:{
@@ -106,6 +106,15 @@ let router = new VueRouter({
             return savedPosition
         } else {
             return { x: 0, y: 0 }
+        }
+    }
+})
+router.beforeEach((to,from,next)=>{
+    if(typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = './mobile/dist/index.html'
+        }else {
+            next()
         }
     }
 })

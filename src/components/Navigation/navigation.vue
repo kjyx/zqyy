@@ -101,6 +101,9 @@ export default {
 </script>
 
 <style lang="less">
+.red{
+  color: red;
+}
 .sidebar {
   position: fixed;
   top: 0;
@@ -112,7 +115,6 @@ export default {
 
   .button {
     width: 40%;
-    height: 2.5%;
     //background-color: pink;
     margin: 100px auto 0 auto;
 

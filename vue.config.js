@@ -9,7 +9,9 @@ module.exports = {
     // },
     // 关闭语法检查
     lintOnSave:false,
-
+    assetsDir: 'static',
+    parallel: false,
+    publicPath: './',
     // 配置代理服务器
     devServer:{
         proxy:{

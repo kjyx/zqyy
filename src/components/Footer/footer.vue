@@ -37,11 +37,12 @@
               <div class="business">
                 <h1>业务领域</h1>
                 <ul>
-                  <li>业务领域</li>
-                  <li>业务领域</li>
-                  <li>业务领域</li>
-                  <li>业务领域</li>
-                  <li>业务领域</li>
+                  <li @click="$router.push({path:`/product/${1}`})">宣传片</li>
+                  <li @click="$router.push({path:`/product/${2}`})">形象片</li>
+                  <li @click="$router.push({path:`/product/${3}`})">广告片</li>
+                  <li @click="$router.push({path:`/product/${4}`})">产品片</li>
+                  <li @click="$router.push({path:`/product/${5}`})">微电影</li>
+                  <li @click="$router.push({path:`/product/${6}`})">二维/三维动画</li>
                 </ul>
               </div>
               <div class="anli-xinwen-lianxi">
@@ -51,7 +52,7 @@
               </div>
             </div>
             <div class="copyright">
-              <p>版权所有@中启数值 备案号xxxxxx</p>
+              <p>版权所有@中启数值 备案-豫ICP备2021008847号</p>
             </div>
           </div>
         </div>
@@ -67,66 +68,75 @@ export default {
 </script>
 
 <style scoped lang="less">
-footer{
+footer {
   width: 100%;
   height: 590px;
   //background-color: pink;
   border-top: 1px solid #6e6d6d;
-  .footer-box{
+
+  .footer-box {
     display: flex;
     align-items: center;
     width: 100%;
     height: 100%;
     //background-color: pink;
-    .footer_center{
+    .footer_center {
       display: flex;
       justify-content: space-between;
       width: 100%;
       height: 370px;
       //background-color: green;
-      .footer-left{
+      .footer-left {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        .logo{
+
+        .logo {
           width: 266px;
           height: 78px;
-          img{
+
+          img {
             width: 100%;
             height: 100%;
           }
         }
-        .tubiao{
+
+        .tubiao {
           position: relative;
           display: flex;
           justify-content: space-between;
           width: 100px;
           height: 40px;
           //background-color: skyblue;
-          span{
+          span {
             display: inline-block;
             width: 40px;
           }
-          .weixin{
+
+          .weixin {
             width: 40px;
             height: 100%;
           }
-          .qq{
+
+          .qq {
             width: 40px;
             height: 100%;
           }
-          img{
+
+          img {
             width: 100%;
             height: 100%;
           }
         }
       }
-      .footer-right_box{
+
+      .footer-right_box {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 650px;
-        .footer-right{
+
+        .footer-right {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -134,34 +144,42 @@ footer{
           height: 330px;
           //background-color: mediumpurple;
           border-bottom: 1px solid #e0e2e1;
-          .about{
+
+          .about {
             flex: 1;
             text-align: center;
           }
-          .business{
+
+          .business {
             flex: 1;
             text-align: center;
             //background-color: pink;
-            ul{
-              li{
-                font-size: 15px;
-                line-height: 30px;
+            ul {
+              li {
+                font-size: 17px;
+                font-weight: 600;
+                line-height: 40px;
+                cursor: pointer;
               }
             }
           }
-          .anli-xinwen-lianxi{
+
+          .anli-xinwen-lianxi {
             flex: 1;
             text-align: center;
           }
-          h1{
+
+          h1 {
             line-height: 40px;
             font-size: 25px;
             margin-bottom: 10px;
           }
         }
-        .copyright{
+
+        .copyright {
           color: #b6b6b6;
-          p{
+
+          p {
             font-size: 15px;
           }
         }

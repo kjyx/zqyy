@@ -4,7 +4,9 @@
   <insidepageheader></insidepageheader>
   <div class="about_case">
     <div class="w">
-      <div class="about_video"></div>
+      <div class="about_video">
+        <video width="100%" height="100%" src="http://image.zqszys.com/voide/1860X950-3_x264.mp4" autoplay="autoplay" loop="loop" muted="muted" ref="videoList"></video>
+      </div>
     </div>
   </div>
 <!--  公司简介-->
@@ -24,7 +26,9 @@
               值、更有意义的影像作品生产商。</p>
           </div>
         </div>
-        <div class="Company_right"></div>
+        <div class="Company_right">
+          <img style="width: 100%;height: 100%;" src="@/assets/aboutImage.jpg" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -97,7 +101,6 @@ export default {
   .Company_right{
   width: 425px;
   height: 100%;
-  background-color: black;
     }
 }
 
