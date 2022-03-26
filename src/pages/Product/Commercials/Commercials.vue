@@ -151,6 +151,226 @@ export default {
 </script>
 
 <style  lang="less">
+.wp {
+  width: 1300px;
+  margin: 0 auto;
+}
+.header{
+  width: 100%;
+  height: 60px;
+  //background-color: pink;
+  margin-bottom: 85px;
+
+  .wp {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    height: 100%;
+
+    h1 {
+      text-align: center;
+      padding-bottom: 8px;
+      letter-spacing: 1px;
+    }
+  }
+}
+.trailer3{
+  width: 100%;
+  height: 110px;
+  margin-bottom: 152px;
+  //background-color: pink;
+  .wp{
+    height: 100%;
+    .teaile-advantage{
+      width: 100%;
+      height: 100%;
+      //background-color: green;
+      ul{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 100%;
+        li{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          width: 282px;
+          height: 100%;
+          //background-color: purple;
+          h1{
+
+          }
+          span{
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 21px 0 41px 0;
+            background-color: #E52029;
+          }
+          p{
+            color: #ccc;
+            font-size: 15px;
+            &:nth-child(1){
+              color: black;
+              font-size: 16px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.trailer4{
+  width: 100%;
+  height: 700px;
+  margin-bottom: 120px;
+  .wp{
+    width: 800px;
+    height: 100%;
+    .trailer4-box{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      //background-color: pink;
+      .left_box{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 700px;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        border: 3px solid black;
+        span{
+          position: absolute;
+          top: 50%;
+          left: -10px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          animation: spin 5s infinite linear;
+          transform-origin: 358px -2px;
+          background-color: black;
+        }
+      }
+      .center-text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -o-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        h1{
+          font-size: 31px;
+        }
+        p{
+          margin-top: 40px;
+          font-size: 17px;
+          color: #757475;
+        }
+      }
+      .right_box{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 700px;
+        height: 100%;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 3px solid red;
+        span{
+          position: absolute;
+          right: -12px;
+          top: 50%;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          animation: spin1 6s infinite linear;
+          transform-origin: -340px -0.5px;
+          background-color: red;
+        }
+      }
+    }
+  }
+}
+
+.trailer5{
+  width: 100%;
+  height: 420px;
+  margin-bottom: 200px;
+  .wp{
+    height: 100%;
+    .trailer5-list{
+      width: 100%;
+      height: 100%;
+      //background-color: green;
+      ul{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        li{
+          width: 275px;
+          height: 100%;
+          border: 2px solid #ccc;
+          //background-color: pink;
+          .top-text{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+            border-bottom: 2px solid #ccc;
+            p{
+              &:nth-child(1){
+                font-size: 20px;
+                font-weight: 900;
+                line-height: 50px;
+              }
+              &:nth-child(2){
+                font-size: 21px;
+                font-weight: 600;
+                color: #5F5D5D;
+              }
+            }
+          }
+          .top-buttom{
+            p{
+              font-size: 14px;
+              font-weight: 600;
+              padding: 25px 18px;
+            }
+            img{
+              margin-top: 27px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to{
+    transform: rotate(1turn)
+  }
+}
+
+@keyframes spin1 {
+  to{
+    transform: rotate(-1turn)
+  }
+}
 .commercials2{
   width: 100%;
   height: 360px;

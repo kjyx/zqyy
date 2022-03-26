@@ -136,6 +136,31 @@ name: "ProductPiece"
 </script>
 
 <style lang="less">
+.wp {
+  width: 1300px;
+  margin: 0 auto;
+}
+.header{
+  width: 100%;
+  height: 60px;
+  //background-color: pink;
+  margin-bottom: 85px;
+
+  .wp {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    height: 100%;
+
+    h1 {
+      text-align: center;
+      padding-bottom: 8px;
+      letter-spacing: 1px;
+    }
+  }
+}
 .ProductPiece2{
   width: 100%;
   height: 400px;
@@ -193,6 +218,27 @@ name: "ProductPiece"
     }
   }
 }
+.header{
+  width: 100%;
+  height: 60px;
+  //background-color: pink;
+  margin-bottom: 85px;
+
+  .wp {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    height: 100%;
+
+    h1 {
+      text-align: center;
+      padding-bottom: 8px;
+      letter-spacing: 1px;
+    }
+  }
+}
 .trailer3{
   width: 100%;
   height: 110px;
@@ -242,80 +288,114 @@ name: "ProductPiece"
   }
 }
 
-.trailer4{
+.imageSlices4{
   width: 100%;
-  height: 700px;
-  margin-bottom: 120px;
+  height: 600px;
+  margin-bottom: 150px;
+  //background-color: pink;
   .wp{
+    position: relative;
     width: 800px;
     height: 100%;
-    .trailer4-box{
-      position: relative;
-      width: 100%;
-      height: 100%;
-      //background-color: pink;
-      .left_box{
+    //background-color: green;
+    .public{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      box-sizing: border-box;
+    }
+    .imageSlices4-left{
+      transform: translateX(-50%) translateY(-50%) rotateZ(60deg);
+      border: 2px solid red;
+      span{
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 700px;
-        height: 100%;
-        box-sizing: border-box;
-        border-radius: 50%;
-        border: 3px solid black;
-        span{
-          position: absolute;
-          top: 50%;
-          left: -10px;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          animation: spin 5s infinite linear;
-          transform-origin: 358px -2px;
-          background-color: black;
-        }
-      }
-      .center-text{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        text-align: center;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-        -o-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-        h1{
-          font-size: 31px;
-        }
-        p{
-          margin-top: 40px;
-          font-size: 17px;
-          color: #757475;
-        }
-      }
-      .right_box{
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 700px;
-        height: 100%;
-        border-radius: 50%;
-        box-sizing: border-box;
-        border: 3px solid red;
-        span{
-          position: absolute;
-          right: -12px;
-          top: 50%;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          animation: spin1 6s infinite linear;
-          transform-origin: -340px -0.5px;
-          background-color: red;
-        }
+        top: -10px;
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        animation: red 8s infinite linear ;
+        background-color: red;
       }
     }
+    .imageSlices4-center{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+      -o-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      h1{
+        font-size: 31px;
+      }
+      p{
+        margin-top: 40px;
+        font-size: 17px;
+        color: #757475;
+      }
+    }
+    .imageSlices4-right{
+      transform: translateX(-50%) translateY(-50%) rotateZ(210deg);
+      border: 2px solid black;
+      span{
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        animation: black 6s infinite linear ;
+        background-color: black;
+      }
+    }
+  }
+}
+
+@keyframes red {
+  0%{
+    top: -10px;
+    left: -10px;
+  }
+  25%{
+    top: -10px;
+    left: 490px;
+  }
+  50%{
+    top: 488px;
+    left: 490px;
+  }
+  75%{
+    top: 490px;
+    left: -7px;
+  }
+  100%{
+    top: -10px;
+    left: -10px;
+  }
+}
+@keyframes black {
+  0%{
+    top: -10px;
+    left: -10px;
+  }
+  25%{
+    top:490px;
+    left: -10px;
+  }
+  50%{
+    top:490px;
+    left: 490px;
+  }
+  75%{
+    top:-10px;
+    left: 490px;
+  }
+  100%{
+    top:-10px;
+    left: -10px;
   }
 }
 
@@ -377,15 +457,4 @@ name: "ProductPiece"
   }
 }
 
-@keyframes spin {
-  to{
-    transform: rotate(1turn)
-  }
-}
-
-@keyframes spin1 {
-  to{
-    transform: rotate(-1turn)
-  }
-}
 </style>

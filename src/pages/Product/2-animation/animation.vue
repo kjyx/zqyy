@@ -138,6 +138,249 @@ export default {
 </script>
 
 <style lang="less">
+.wp {
+  width: 1300px;
+  margin: 0 auto;
+}
+.header{
+  width: 100%;
+  height: 60px;
+  //background-color: pink;
+  margin-bottom: 85px;
+
+  .wp {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
+    height: 100%;
+
+    h1 {
+      text-align: center;
+      padding-bottom: 8px;
+      letter-spacing: 1px;
+    }
+  }
+}
+.trailer3{
+  width: 100%;
+  height: 110px;
+  margin-bottom: 152px;
+  //background-color: pink;
+  .wp{
+    height: 100%;
+    .teaile-advantage{
+      width: 100%;
+      height: 100%;
+      //background-color: green;
+      ul{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 100%;
+        li{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          width: 282px;
+          height: 100%;
+          //background-color: purple;
+          h1{
+
+          }
+          span{
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 21px 0 41px 0;
+            background-color: #E52029;
+          }
+          p{
+            color: #ccc;
+            font-size: 15px;
+            &:nth-child(1){
+              color: black;
+              font-size: 16px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.imageSlices4{
+  width: 100%;
+  height: 600px;
+  margin-bottom: 150px;
+  //background-color: pink;
+  .wp{
+    position: relative;
+    width: 800px;
+    height: 100%;
+    //background-color: green;
+    .public{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      box-sizing: border-box;
+    }
+    .imageSlices4-left{
+      transform: translateX(-50%) translateY(-50%) rotateZ(60deg);
+      border: 2px solid red;
+      span{
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        animation: red 8s infinite linear ;
+        background-color: red;
+      }
+    }
+    .imageSlices4-center{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+      -o-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      h1{
+        font-size: 31px;
+      }
+      p{
+        margin-top: 40px;
+        font-size: 17px;
+        color: #757475;
+      }
+    }
+    .imageSlices4-right{
+      transform: translateX(-50%) translateY(-50%) rotateZ(210deg);
+      border: 2px solid black;
+      span{
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        animation: black 6s infinite linear ;
+        background-color: black;
+      }
+    }
+  }
+}
+
+@keyframes red {
+  0%{
+    top: -10px;
+    left: -10px;
+  }
+  25%{
+    top: -10px;
+    left: 490px;
+  }
+  50%{
+    top: 488px;
+    left: 490px;
+  }
+  75%{
+    top: 490px;
+    left: -7px;
+  }
+  100%{
+    top: -10px;
+    left: -10px;
+  }
+}
+@keyframes black {
+  0%{
+    top: -10px;
+    left: -10px;
+  }
+  25%{
+    top:490px;
+    left: -10px;
+  }
+  50%{
+    top:490px;
+    left: 490px;
+  }
+  75%{
+    top:-10px;
+    left: 490px;
+  }
+  100%{
+    top:-10px;
+    left: -10px;
+  }
+}
+
+.trailer5{
+  width: 100%;
+  height: 420px;
+  margin-bottom: 200px;
+  .wp{
+    height: 100%;
+    .trailer5-list{
+      width: 100%;
+      height: 100%;
+      //background-color: green;
+      ul{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        li{
+          width: 275px;
+          height: 100%;
+          border: 2px solid #ccc;
+          //background-color: pink;
+          .top-text{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+            border-bottom: 2px solid #ccc;
+            p{
+              &:nth-child(1){
+                font-size: 20px;
+                font-weight: 900;
+                line-height: 50px;
+              }
+              &:nth-child(2){
+                font-size: 21px;
+                font-weight: 600;
+                color: #5F5D5D;
+              }
+            }
+          }
+          .top-buttom{
+            p{
+              font-size: 14px;
+              font-weight: 600;
+              padding: 25px 18px;
+            }
+            img{
+              margin-top: 27px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .animation{
   width: 100%;
   height: 500px;

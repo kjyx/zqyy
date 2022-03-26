@@ -132,47 +132,28 @@ export default {
 </script>
 
 <style  lang="less">
-.microfilm2{
+.wp {
+  width: 1300px;
+  margin: 0 auto;
+}
+.header{
   width: 100%;
-  height: 435px;
-  margin-bottom: 150px;
-  .wp{
+  height: 60px;
+  //background-color: pink;
+  margin-bottom: 85px;
+
+  .wp {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text {
     height: 100%;
-    .microfilm2-box{
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      //background-color: green;
-      .microfilm2_top{
-        display: flex;
-        width: 300px;
-        height: 60px;
-        margin: 0 auto 20px auto;
-        img{
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .microfilm2_img{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        background: url("../images/beijing.jpg") center center / cover no-repeat;
-        .microfilm2-text{
-          width: 370px;
-          height: 180px;
-          //background-color: pink;
-          text-align: center;
-          p{
-            color: white;
-            font-size: 15px;
-            line-height: 33px;
-          }
-        }
-      }
+
+    h1 {
+      text-align: center;
+      padding-bottom: 8px;
+      letter-spacing: 1px;
     }
   }
 }
@@ -371,4 +352,49 @@ export default {
     transform: rotate(-1turn)
   }
 }
+.microfilm2{
+  width: 100%;
+  height: 435px;
+  margin-bottom: 150px;
+  .wp{
+    height: 100%;
+    .microfilm2-box{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      //background-color: green;
+      .microfilm2_top{
+        display: flex;
+        width: 300px;
+        height: 60px;
+        margin: 0 auto 20px auto;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .microfilm2_img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background: url("../images/beijing.jpg") center center / cover no-repeat;
+        .microfilm2-text{
+          width: 370px;
+          height: 180px;
+          //background-color: pink;
+          text-align: center;
+          p{
+            color: white;
+            font-size: 15px;
+            line-height: 33px;
+          }
+        }
+      }
+    }
+  }
+}
+
 </style>

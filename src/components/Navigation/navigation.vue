@@ -4,7 +4,6 @@
       <img src="./images/anniu.png" alt="">
     </div>
     <el-drawer :visible.sync="drawer" :direction="direction" size='100%' custom-class="drawer">
-        <video style="width: 100%;height: 100%; z-index: 9999;position: absolute;top: 0;left: 0" src="http://image.zqszys.com/voide/1920X1080-2_x264.mp4" autoplay="autoplay" muted="muted"></video>
       <div class="box-nav">
         <ul>
           <li>
