@@ -13,7 +13,7 @@
     </div>
     <div class="min">
       <div class="w">
-        <el-tabs value="xuanchuan" @tab-click="abc">
+        <el-tabs :value="value" @tab-click="abc">
           <el-tab-pane :label="item.label" :name="item.value" v-for="item in titleList" :key="item.id"></el-tab-pane>
         </el-tabs>
           <router-view></router-view>
@@ -28,6 +28,7 @@ export default {
   name: "product",
   data() {
     return {
+      value:'xuanchuan',
       titleList: [
         {id: 1, value: 'xuanchuan', label: '宣传片', url: '/product/trailer'},
         {id: 2, value: 'xingxing', label: '形象片', url: '/product/image-slices'},
@@ -38,6 +39,9 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.Positioning(this.$route.path)
+  },
   methods: {
     abc(a) {
       this.titleList.forEach(item => {
@@ -46,6 +50,66 @@ export default {
         }
       })
     },
+    // 这个是页面第一次挂在时监听路由 显示高亮
+    Positioning(path) {
+      switch (path) {
+        case '/product/trailer': {
+          this.value = 'xuanchuan'
+          break
+        }
+        case '/product/image-slices': {
+          this.value = 'xingxiang'
+          break
+        }
+        case '/product/commercials': {
+          this.value = 'guanggao'
+          break
+        }
+        case '/product/product-piece': {
+          this.value = 'chanpin'
+          break
+        }
+        case '/product/micro-film': {
+          this.value = 'dianying'
+          break
+        }
+        case '/product/animation': {
+          this.value = 'donghua'
+          break
+        }
+      }
+    }
+  },
+  // 监听是为了防止用户在当前页面点击 footer下的导航 tabs 类名不切换
+  watch:{
+    $route(to){
+      switch (to.path) {
+        case '/product/trailer': {
+          this.value = 'xuanchuan'
+          break
+        }
+        case '/product/image-slices': {
+          this.value = 'xingxiang'
+          break
+        }
+        case '/product/commercials': {
+          this.value = 'guanggao'
+          break
+        }
+        case '/product/product-piece': {
+          this.value = 'chanpin'
+          break
+        }
+        case '/product/micro-film': {
+          this.value = 'dianying'
+          break
+        }
+        case '/product/animation': {
+          this.value = 'donghua'
+          break
+        }
+      }
+    }
   }
 }
 </script>

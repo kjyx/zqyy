@@ -42,7 +42,6 @@
 <script>
 import CaseList from "@/pages/Case/CaseList/CaseList";
 import {mapState} from 'vuex'
-import {getCaseList} from "@/api";
 
 export default {
   name: "case",
@@ -93,19 +92,24 @@ export default {
     },
     // 切换列表
     caseSwitch(vc) {
-        let id = vc.index
-        if (id === '0') {
-          id = ''
-          this.$route.params.id = ''
-          this.casePage.typeId = id
-          this.getAllCaseList()
-        } else {
-          this.casePage.typeId = Number(id) + 1
-          this.$route.params.id = Number(vc.index) + 1
-          this.getAllCaseList()
-        }
+      // 当前id为要的的参数
+      let id = vc.index
+      // id 如果等于零 就让id 等于空 因为获取全部案例的id参数为空
+      if (id === '0') {
+        id = ''
+        // 点击的时候清除 id 重新更新 路由参数
+        this.$route.params.id = ''
+        this.$router.push({path: `/case`})
+        this.casePage.typeId = id
+        this.getAllCaseList()
+      } else {
+        this.casePage.typeId = Number(id) + 1
+        this.$route.params.id = String(Number(id) + 1)
+        this.$router.push({path: `/case/${this.$route.params.id}`})
+        this.getAllCaseList()
+      }
     },
-
+    // 判断 页面初次挂在时 路由参数是多少
     Positioning(id) {
       switch (id) {
         case '2': {
@@ -123,7 +127,6 @@ export default {
         case '5': {
           this.value = 'chanpin'
           break
-
         }
         case '6': {
           this.value = 'dianying'
