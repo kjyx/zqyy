@@ -6,40 +6,11 @@
     <el-drawer :visible.sync="drawer" :direction="direction" size='100%' custom-class="drawer">
       <div class="box-nav">
         <ul>
-          <li>
-            <div class="text" @click="$router.push({path:'/'});drawer=false">
-              <p>回到首页</p>
-              <span>Back to first page</span>
-            </div>
-          </li>
-          <li>
-            <div class="text" @click="$router.push({path:'/about'});drawer=false">
-              <p>关于我们</p>
-              <span>ABOUT US</span>
-            </div>
-          </li>
-          <li>
-            <div class="text" @click="$router.push({path:'/case'});drawer=false">
-              <p>案例中心</p>
-              <span>Our Case</span>
-            </div>
-          </li>
-          <li>
-            <div class="text" @click="$router.push({path:'/product'});drawer=false">
-              <p>产品中心</p>
-              <span>Product Center</span>
-            </div>
-          </li>
-          <li>
-            <div class="text" @click="$router.push({path:'/news'});drawer=false">
-              <p>新闻中心</p>
-              <span>NEWS</span>
-            </div>
-          </li>
-          <li>
-            <div class="text" @click="$router.push({path:'/relation'});drawer=false">
-              <p>联系我们</p>
-              <span>Contact US</span>
+          <li v-for="item in drawerList" :key="item.id"
+              @click="handleDrawer(item)">
+            <div class="text">
+              <p>{{ item.title }}</p>
+              <span>{{ item.conent }}</span>
             </div>
           </li>
         </ul>
@@ -50,23 +21,8 @@
     </el-drawer>
     <div class="menuBtn">
       <ul ref="ul">
-        <li>
-          <span @click="$router.push({path:'/home'})">首页</span>
-        </li>
-        <li @click="$router.push({path:'/product'})">
-          <span>产品</span>
-        </li>
-        <li @click="$router.push({path:'/case'})">
-          <span>案例</span>
-        </li>
-        <li @click="$router.push({path:'/news'})">
-          <span>新闻</span>
-        </li>
-        <li @click="$router.push({path:'/relation'})">
-          <span>联系</span>
-        </li>
-        <li @click="$router.push({path:'/about'})">
-          <span>中启影业</span>
+        <li v-for="item in pathList" :key="item.id" @click="handlePath(item)">
+          <span :style="{color: item.id === current ? 'red': ''}">{{ item.title }}</span>
         </li>
       </ul>
     </div>
@@ -79,31 +35,52 @@ export default {
   name: "navigation",
   data() {
     return {
+      current: 1,
       drawer: false,
       direction: "ltr",
+      pathList: [
+        {id: 1, title: '首页', path: '/home'},
+        {id: 2, title: '产品', path: '/product'},
+        {id: 3, title: '案例', path: '/case'},
+        {id: 4, title: '新闻', path: '/news'},
+        {id: 5, title: '联系', path: '/relation'},
+        {id: 6, title: '中启影业', path: '/about'}
+      ],
+      drawerList: [
+        {id: 1, title: '回到首页', conent: 'Back to first page', path: '/home'},
+        {id: 2, title: '产品中心', conent: 'ABOUT US', path: '/product'},
+        {id: 3, title: '案例中心', conent: 'Our Case', path: '/case'},
+        {id: 4, title: '新闻中心', conent: 'Product Center', path: '/news'},
+        {id: 5, title: '联系我们', conent: 'NEWS', path: '/relation'},
+        {id: 6, title: '中启影业', conent: 'Contact US', path: '/about'}
+      ]
     }
   },
   mounted() {
-    // 获取ul的子节点
-    let ul = this.$refs.ul.children
-    // 吧为数组转化为数组
-    let li = Array.from(ul)
-    li.forEach((item)=>{
-      item.addEventListener('click',()=>{
-        li.forEach(item=>{
-          item.style.color =''
-        })
-        item.style.color = 'red'
-      })
-    })
+    this.current = Number(sessionStorage.getItem('current')) || 1
+  },
+  methods: {
+    handlePath(item) {
+      this.$router.push({path: item.path})
+      this.current = item.id
+      sessionStorage.setItem('current', item.id)
+    },
+    handleDrawer(item) {
+      this.$router.push({path: item.path});
+      this.drawer = false;
+      this.current = item.id
+      sessionStorage.setItem('current', item.id)
+    }
+
   }
 }
 </script>
 
 <style lang="less">
-.red{
+.red {
   color: red;
 }
+
 .sidebar {
   position: fixed;
   top: 0;

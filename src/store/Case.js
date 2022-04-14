@@ -34,6 +34,15 @@ const state = {
 }
 
 const getters = {
+    rightCaseText() {
+        let caseTextList = []
+        state.CaseTypeList.forEach((item, index) => {
+            if (index > 0) {
+                caseTextList.push(item)
+            }
+        })
+        return caseTextList
+    }
 }
 
 export default {

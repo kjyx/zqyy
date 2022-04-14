@@ -35,7 +35,7 @@
           <span class="iconfont icon-jiantou" @click="$router.push({path:'/news'})">Next</span>
         </div>
         <div class="function-buttom">
-          <span @click="$router.push({path:'/news'})">BACK</span>
+          <span @click="$router.go(-1)">BACK</span>
         </div>
       </div>
     </div>

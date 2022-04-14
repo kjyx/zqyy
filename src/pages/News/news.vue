@@ -1,101 +1,88 @@
 <template>
-<div>
-  <!--  关于-->
-  <insidepageheader></insidepageheader>
-  <div class="news">
-    <div class="w">
-      <div class="news-box">
-        <!--  左侧导航区-->
-        <div class="news_navigation">
-          <ul class="navigation-list">
-            <li class="all-news box" v-for="item in newsNavigation" :key="item.id" @click="className(item.id)" :class="{active:current === item.id}">
-              <p>{{item.name}}</p>
-            </li>
-          </ul>
+  <div>
+    <!--  关于-->
+    <insidepageheader></insidepageheader>
+    <div class="news">
+      <div class="w">
+        <div class="news-box">
+          <!--  左侧导航区-->
+          <div class="news_navigation">
+            <ul class="navigation-list">
+              <li class="all-news box" v-for="item in newsNavigation" :key="item.id" @click="getNewsList(item.id,'flage')"
+                  :class="{active:current === item.id}">
+                <p>{{ item.name }}</p>
+              </li>
+            </ul>
+          </div>
+          <!--  右侧列表-->
+          <NewsList :newsInfo="newsInfo"></NewsList>
         </div>
-        <!--  右侧列表-->
-        <NewsList :newsInfo="newsInfo"></NewsList>
       </div>
     </div>
+    <!--  分页器-->
+    <div class="pagination">
+      <!--      分页-->
+      <el-pagination
+          v-show="total > 5"
+          background layout="prev, pager, next"
+          :current-page="PageParmes.pageNum"
+          :total="total"
+          :page-size="PageParmes.pageSize"
+          @current-change="Pagination"
+          style="text-align: center; margin:100px 0;"></el-pagination>
+    </div>
   </div>
-<!--  分页器-->
-  <div class="pagination">
-    <!--      分页-->
-    <el-pagination
-        background layout="prev, pager, next"
-        :current-page="PageParmes.pageNum"
-        :total="total"
-        :page-size="PageParmes.pageSize"
-        @current-change="getPageList"
-        style="text-align: center; margin:100px 0;"></el-pagination>
-  </div>
-</div>
 </template>
 
 <script>
 import NewsList from "@/pages/News/NewsList/NewsList";
-import { getNewsType } from "@/api";
 import {mapState} from "vuex";
+
 export default {
   name: "news",
-  data(){
-    return{
-      //总页数
-      total:0,
-      PageParmes:{
+  data() {
+    return {
+      PageParmes: {
         // 当前页数
-        pageNum:1,
+        pageNum: 1,
         // 每页显示多少个
-        pageSize:5,
+        pageSize: 5,
       },
       // 左侧新闻导航数据
-      newsNavigation:[
-        {id:"" , name: '全部新闻/ALL news'},
-        {id:2 , name: '公司新闻/Company news'},
-        {id:3 , name: '行业新闻/Industry news'}
+      newsNavigation: [
+        {id: "", name: '全部新闻/ALL news'},
+        {id: 2, name: '公司新闻/Company news'},
+        {id: 3, name: '行业新闻/Industry news'}
       ],
-      current:'',
+      current: '',
       // 进行遍历的数据
-      newsInfo:[],
     }
   },
   mounted() {
-    this.getPageList()
+    this.getNewsList('')
   },
-  methods:{
+  methods: {
     // 点击导航发送请求 获取新闻分类
-    async className(id){
+    async getNewsList(id, flage) {
       this.current = id
       // 切换的时候添加 typeId 属性
-      this.$set(this.PageParmes,'typeId',id)
-      this.PageParmes.pageNum = 1
-      const result = await getNewsType(this.PageParmes)
-      if(result.code === 200){
-        this.total = result.data.total
-        this.newsInfo = result.data.records
-        delete this.PageParmes.typeId
+      this.PageParmes.typeId = id
+      if (flage) {
+        this.PageParmes.pageNum = 1
       }
+      await this.$store.dispatch('News/NewsList',this.PageParmes)
+      window.scrollTo(0, 150)
     },
-
-    // 获取新闻列表 这里时在仓库发送的请求 因为home页面也要用到那个数据
-   async getPageList( page = 1 ){
+    // 翻页
+    Pagination(page) {
       this.PageParmes.pageNum = page
-     try {
-        // 发送请求
-       await this.$store.dispatch('News/NewsList',this.PageParmes)
-       this.newsInfo = this.allNewsList.records
-       this.total = this.allNewsList.total
-       window.scrollTo(0,document.body.scrollHeight);
-       window.scrollTo(0,0);
-     }catch (e) {
-       alert(e.message)
-     }
+      this.getNewsList(this.current)
     }
   },
-  computed:{
-    ...mapState('News',['allNewsList'])
+  computed: {
+    ...mapState('News', ['newsInfo','total'])
   },
-  components:{
+  components: {
     NewsList
   }
 }
@@ -103,31 +90,34 @@ export default {
 
 <style scoped lang="less">
 // 新闻
-.news{
+.news {
   margin-bottom: 30px;
 }
-.news-box{
+
+.news-box {
   display: flex;
   width: 100%;
   height: 1600px;
   //background-color: pink;
-  .news_navigation{
+  .news_navigation {
     width: 550px;
     height: 570px;
     margin-right: 70px;
     //background-color: green;
-    .navigation-list{
+    .navigation-list {
       width: 100%;
       height: 100%;
-      .box{
+
+      .box {
         width: 70%;
         height: 120px;
         margin: 0 auto 60px auto;
         background-color: #332C2B;
         cursor: pointer;
-        color:#7F7B7A ;
+        color: #7F7B7A;
         border-radius: 30px;
-        p{
+
+        p {
           font-size: 20px;
           text-align: center;
           line-height: 120px;
@@ -136,8 +126,9 @@ export default {
     }
   }
 }
-.active{
-  background-color: red!important;
+
+.active {
+  background-color: red !important;
   color: white !important;
 }
 </style>

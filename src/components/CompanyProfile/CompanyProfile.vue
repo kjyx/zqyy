@@ -156,15 +156,13 @@ export default {
                 background-color: #fff;
               }
             }
-            &:hover{
-              hr{
-                width: 100%;
-              }
-            }
           }
           &:hover{
             .casetext{
               background-color: rgba(0,0,0,0);
+            }
+            hr{
+              width: 100%!important;
             }
             img{
               transform: scale(1.2);

@@ -50,7 +50,8 @@ let router = new VueRouter({
             redirect: 'product/trailer',
             component: () => import('@/pages/Product/product'),
             meta: {
-                isShow: true
+                isShow: true,
+                name: 'product'
             },
             children: [
                 // 宣传片
@@ -59,7 +60,8 @@ let router = new VueRouter({
                     name: 'Trailer',
                     component: () => import('@/pages/Product/trailer/trailer'),
                     meta: {
-                        isShow: true
+                        isShow: true,
+                        name: 'product'
                     },
                 },
                 // 星形象片
@@ -68,7 +70,8 @@ let router = new VueRouter({
                     name: 'ImageSlices',
                     component: () => import('@/pages/Product/ImageSlices/ImageSlices'),
                     meta: {
-                        isShow: true
+                        isShow: true,
+                        name: 'product'
                     },
                 },
                 // 广告片
@@ -77,7 +80,8 @@ let router = new VueRouter({
                     name: 'Commercials',
                     component: () => import('@/pages/Product/Commercials/Commercials'),
                     meta: {
-                        isShow: true
+                        isShow: true,
+                        name: 'product'
                     },
                 },
                 // 产品篇
@@ -86,7 +90,8 @@ let router = new VueRouter({
                     name: 'ProductPiece',
                     component: () => import('@/pages/Product/ProductPiece/ProductPiece'),
                     meta: {
-                        isShow: true
+                        isShow: true,
+                        name: 'product'
                     },
                 },
                 // 微电影
@@ -95,7 +100,8 @@ let router = new VueRouter({
                     name: 'MicroFilm',
                     component: () => import('@/pages/Product/MicroFilm/MicroFilm'),
                     meta: {
-                        isShow: true
+                        isShow: true,
+                        name: 'product'
                     },
                 },
                 {
@@ -103,7 +109,8 @@ let router = new VueRouter({
                     name: 'animation',
                     component: () => import('@/pages/Product/2-animation/animation'),
                     meta: {
-                        isShow: true
+                        isShow: true,
+                        name: 'product'
                     },
                 }
             ]
@@ -114,7 +121,8 @@ let router = new VueRouter({
             nema: 'Case',
             component: () => import('@/pages/Case/case'),
             meta: {
-                isShow: true
+                isShow: true,
+                name: 'case'
             }
         },
         // 新闻
@@ -123,7 +131,8 @@ let router = new VueRouter({
             nema: 'News',
             component: () => import('@/pages/News/news'),
             meta: {
-                isShow: true
+                isShow: true,
+                name: 'news'
             },
         },
         // 新闻内页
@@ -166,6 +175,7 @@ let router = new VueRouter({
             return savedPosition
         } else {
             return {x: 0, y: 0}
+
         }
     }
 })

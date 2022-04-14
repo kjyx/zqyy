@@ -31,7 +31,7 @@ export default {
       value:'xuanchuan',
       titleList: [
         {id: 1, value: 'xuanchuan', label: '宣传片', url: '/product/trailer'},
-        {id: 2, value: 'xingxing', label: '形象片', url: '/product/image-slices'},
+        {id: 2, value: 'xingxiang', label: '形象片', url: '/product/image-slices'},
         {id: 3, value: 'guanggao', label: '广告片', url: '/product/commercials'},
         {id: 4, value: 'chanpin', label: '产品篇', url: '/product/product-piece'},
         {id: 5, value: 'dianying', label: '微电影', url: '/product/micro-film'},

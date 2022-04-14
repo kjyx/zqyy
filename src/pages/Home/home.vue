@@ -40,7 +40,8 @@
             <video width="100%" height="100%" src="http://image.zqszys.com/voide/1120X940-1_x264.mp4"
                    autoplay="autoplay" loop="loop" muted="muted" ref="video1"></video>
           </div>
-          <div class="mask" style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
+          <div class="mask"
+               style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
           <!--          数字滚动列表-->
           <div class="data" style="z-index: 1">
             <ul class=" middle_left_leftCont">
@@ -130,8 +131,8 @@
                       @click="$router.push({path:`/newsinfo/${item.id}`})">
                     <div class="list">
                       <div class="list-left">
-                        <h1>{{ filters.formatTimer(item.createTime) }}</h1>
-                        <p>{{ filters1.formatTimer(item.createTime) }}</p>
+                        <h1>{{ item.createTime | formatTimer }}</h1>
+                        <p>{{ item.createTime | formatTimer1 }}</p>
                       </div>
                       <span class="list-center"></span>
                       <div class="list-riight">
@@ -152,7 +153,7 @@
     <div class="section mobx4Bg">
       <div class="mbox mbox4">
         <div style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;">
-          <img src="@/assets/4-beijing.jpg" alt="">
+          <img src="@/assets/4-beijing.jpg" alt="" style="width: 100%;height: 100%;">
         </div>
         <div class="mask"
              style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 0"></div>
@@ -251,7 +252,8 @@
           <div class="imgBg" style="background-image: url(~@/assets/caseImg.jpg);">
             <img src="@/assets/caseImg.jpg" alt="">
           </div>
-          <div class="mask" style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
+          <div class="mask"
+               style="position: absolute;top: 0;left: 0; width: 100%;height: 100%;background-color:rgba(0,0,0,0.5); z-index: 1"></div>
 
           <!--          左侧案例-->
           <div class="box_case-list5" style="z-index: 5;">
@@ -361,11 +363,26 @@ import Swiper from 'swiper'
 import 'swiper/css/swiper.css'
 import mixin from '../../mixin/mixin'
 import caseDateil from '@/mixin/caseDetail'
-import {mapState} from "vuex";
+import {mapState, mapGetters} from "vuex";
 
 export default {
   name: "home",
   mixins: [mixin, caseDateil],
+  filters: {
+    formatTimer: (value) => {
+      let date = new Date(value);
+      let d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      return d;
+    },
+    formatTimer1: (value) => {
+      let date = new Date(value);
+      let y = date.getFullYear();
+      let MM = date.getMonth() + 1;
+      MM = MM < 10 ? "0" + MM : MM;
+      return y + "-" + MM;
+    }
+  },
   data() {
     return {
       // 全屏滚动数据
@@ -388,30 +405,6 @@ export default {
         // sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ee1a59', '#2c3e4f']
       },
       // 新闻数据
-      homeNewsList: [],
-      PageParmes: {
-        // 当前页数
-        pageNum: 1,
-        // 每页显示多少个
-        pageSize: 7,
-      },
-      filters: {
-        formatTimer: (value) => {
-          let date = new Date(value);
-          let d = date.getDate();
-          d = d < 10 ? "0" + d : d;
-          return d;
-        }
-      },
-      filters1: {
-        formatTimer: (value) => {
-          let date = new Date(value);
-          let y = date.getFullYear();
-          let MM = date.getMonth() + 1;
-          MM = MM < 10 ? "0" + MM : MM;
-          return y + "-" + MM;
-        }
-      },
       videoList: [
         {id: 1, url: 'http://image.zqszys.com/voide/1860X950-1_x264.mp4'},
         {id: 2, url: 'http://image.zqszys.com/voide/1860X950-2_x264.mp4'},
@@ -423,12 +416,6 @@ export default {
     new Swiper(this.$refs.floor1Swiper, {
       centeredSlides: true,
       loop: true, // 循环模式选项
-      // 如果需要分页器
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   // 点击小圆点切换图片
-      //   clickable: true
-      // },
       speed: 2000,
       autoplay: {
         delay: 14000,
@@ -473,18 +460,20 @@ export default {
       // moveSectionDown();
     },
     // 发送请求获取新闻数据
-    async getPageList(page = 1) {
-      this.PageParmes.pageNum = page
-      await this.$store.dispatch('News/NewsList', this.PageParmes)
-      this.homeNewsList = this.allNewsList.records
+    async getPageList() {
+      let PageParmes = {
+        pageNum: 1,
+        pageSize: 7,
+        typeId: ""
+      }
+      await this.$store.dispatch('News/NewsList', PageParmes)
     },
 
     // 获取第五页右侧数据
     async caseText() {
       await this.$store.dispatch('Case/getCaseTitleList')
     },
-
-
+    // 判断第几屏然后播放视频
     afterLoad(a, b) {
       switch (b.index) {
         case 0 : {
@@ -514,44 +503,12 @@ export default {
         }
       }
     }
-
   },
   computed: {
-    ...mapState('News', ['allNewsList']),
-    ...mapState('Case', ['CaseTypeList']),
-    // 截取轮播图的四个新闻案例
-    swiperNewsList() {
-      let swiperNewsList = []
-      this.homeNewsList.forEach((item, index) => {
-        if (index <= 3) {
-          swiperNewsList.push(item)
-        }
-      })
-      return swiperNewsList
-    },
+    ...mapState('News', ['newsInfo']),
+    ...mapGetters('News', ['swiperNewsList', 'rightNewsList']),
+    ...mapGetters('Case', ['rightCaseText'])
 
-    // 截取右侧 三个新闻
-    rightNewsList() {
-      let rightNewsList = []
-      this.homeNewsList.forEach((item, index) => {
-        if (index > 3) {
-          rightNewsList.push(item)
-        }
-      })
-      return rightNewsList
-    },
-
-    // 截取 第五页右侧 案例导航
-    // eslint-disable-next-line vue/no-dupe-keys
-    rightCaseText() {
-      let caseTextList = []
-      this.CaseTypeList.forEach((item, index) => {
-        if (index > 0) {
-          caseTextList.push(item)
-        }
-      })
-      return caseTextList
-    }
   }
 }
 </script>
@@ -1095,13 +1052,16 @@ export default {
         transition: all 0.5s;
 
         .min {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
           width: 100%;
           height: 100%;
           text-align: center;
 
           i {
             display: inline-block;
-            padding-top: 20px;
             color: white;
           }
 

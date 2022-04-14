@@ -84,8 +84,9 @@ export default {
         // 获取数据
         this.caseList = this.CaseListDetaile.records
         // 翻页之后定位到顶部
-        window.scrollTo(0, document.body.scrollHeight);
-        window.scrollTo(0, 0);
+        if (page !== 1) {
+          window.scrollTo(0, 150);
+        }
       } catch (e) {
         alert(e.message)
       }
